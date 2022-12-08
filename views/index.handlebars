@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+      <nav>
+        <div class="logo">
+          <img src="/img/servico-de-gestao.png" alt="">
+          <h1>Ordem de Serviço</h1>
+        </div>
+
+        <div class="mobile-menu">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+        <ul class="nav-list">
+          <li><button class="button-nav" onclick="ModalAluno()">Cadastrar Ordem</button></li>
+          <li><a class="button-nav" href="/">Rotativos</a></li>
+          <li><a class="button-nav" href="/">Mensalistas</a></li>
+          {{#if user.admin}}
+            <li><a class="button-nav" href="/users">Usuários</a></li>
+            
+          {{/if}}
+          <li><a class="button-nav" href="/login/logout">Sair</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="modal" id="modalAluno">
+        <div class="modal-content">
+            <header class="modal-header">
+                <img src="/img/servico-de-gestao.png" class="modal-img" alt="">
+                <h2 style="font-weight: bold;">Nova Ordem</h2>
+            </header>
+            <form action="/" method="POST" class="modal-form">
+                <input class="modal-field" placeholder="Nome" type="text" name="nome" required/> 
+                <input class="modal-field" placeholder="CPF" type="text" name="cpf" required/> 
+                <input class="modal-field" placeholder="Telefone" type="text" name="telefone"required/>
+                <input class="modal-field" placeholder="Valor" type="text" name="valor" onkeypress="return onlynumber();" required/>
+                <input class="modal-field" placeholder="Local" type="text" name="local"required/>
+                <input class="modal-field" placeholder="Data" type="date" name="data" required/>
+                <input class="modal-field" placeholder="Descrição" type="text" name="descricao"required/>
+                <div class="modal-buttons">
+                    <button class="button green" type="submit">Enviar</button>
+                    <button class="button green" id="cadClose" onclick="ModalAluno()" type="button">Fechar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    
+    <div class="registros-group">
+        <input class="registros-search" id="searchbar" placeholder="Buscar..."/>
+    </div>
+
+    <div class="box-container">
+        {{#each posts}}
+        <div class="box-child">  
+            <p>Nº da Ordem: {{id}}</p>
+            <p>Nome: {{nome}}</p>
+            <p>CPF: {{cpf}}</p>
+            <p>Telefone: {{telefone}}</p>
+            <p>Valor: {{valor}}</p>
+            <p>Local: {{local}}</p>
+            <p>Data: {{data}}</p> 
+            <div class="box-buttons">
+                <a href="/{{id}}"><button class="box-button"><img class="box-img" width="20px" src="/img/lapis.png" alt=""></button></a> 
+                <a href="/finalizar/{{id}}"><button class="box-button"><img class="box-img" src="/img/lixeira.png" alt=""></button></a>
+            </div>
+        </div>  
+            
+        {{/each}}
+    </div>
+
+    <!--
+    <div class="registros-mat">
+        <table id="tabela" class="table">
+            <thead >
+                <tr class="table-head">
+                    <th>Nº da Ordem</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>Valor</th>
+                    <th>Local</th>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                    <th colspan="2">Opções</th>
+                </tr>
+            </thead>
+        
+            <tbody id="body-table">    
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>{{nome}}</td>
+                        <td>{{cpf}}</td>
+                        <td>{{telefone}}</td>
+                        <td>{{valor}}</td>
+                        <td>{{local}}</td>
+                        <td>{{data}}</td>
+                        <td>{{descricao}}</td>
+                        <td class="td-button">
+                            <a href="/{{id}}"><button class="registros-button"><img class="img-button" width="20px" src="/img/lapis.png" alt=""></button></a> 
+                        </td>
+                        <td class="td-button">
+                            <a href="/finalizar/{{id}}"><button class="registros-button"><img class="img-button" style="filter: invert(1);" width="20px" src="/img/lixeira.png" alt=""></button></a>
+                        </td>
+                    </tr>			
+                
+            </tbody>
+        </table> 
+        -->               
+    </div>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="/js/main.js"></script>    
+</body>
+</html>
+
+
+

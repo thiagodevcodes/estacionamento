@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <body>
+    <div class="login">
+        <div class="login-content">
+            <header class="modal-header">
+                <img src="/img/account.png" class="user-img" alt="">
+    
+            </header>
+            <form action="/login" method="POST" class="modal-form">
+                <input class="modal-field" placeholder="Login" type="text" name="username" id="loginAcess" required/> 
+                <input class="modal-field" placeholder="Senha" type="password" name="password" required/>
+                
+                <div class="login-buttons">
+                    <button class="button green" type="submit">Entrar</button>
+                    <a class="login-link" href="/usuario/atualizar">Esqueceu a senha?</a>
+                    {{#if message}}
+                      <label class="acess-denied">{{message}}</label>
+                    {{/if}}
+                </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

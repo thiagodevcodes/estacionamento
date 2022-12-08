@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Matricula</title>
+</head>
+<body>
+    <div class="aluno-update">
+        <div class="aluno-update-content">
+            <header class="modal-header">
+                <img src="/img/servico-de-gestao.png" class="modal-img" alt="">
+                <h2>Editar Ordem</h2>
+            </header>
+            <form action="/{{id}}" method="POST" class="modal-form">
+                <input class="modal-field" placeholder="Nome" type="text" name="nome" value="{{nome}}" required/> 
+                <input class="modal-field" placeholder="CPF" type="text" name="cpf" value="{{cpf}}" required/> 
+                <input class="modal-field" placeholder="Telefone" type="text" name="telefone" value="{{telefone}}" required/>
+                <input class="modal-field" onkeypress="return onlynumber();" placeholder="Valor" type="text" name="valor" value="{{valor}}" required/>
+                <input class="modal-field" placeholder="Local" type="text" name="local" value="{{local}}" required/>
+                <input class="modal-field" placeholder="Data" type="date" name="data" value="{{data}}" required/>
+                <input class="modal-field" placeholder="Descricao" type="text" name="descricao" value="{{descricao}}" required/>
+                <div class="modal-buttons">
+                    <button class="button green" type="submit">Enviar</button>
+                    <a class="update-link" href="/"><button type="button" class="button green">Voltar</button></a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/main.js"></script>  
+</body>
+</html>
+
+    
+
