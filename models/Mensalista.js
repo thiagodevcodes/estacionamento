@@ -18,6 +18,14 @@ const Mensalista = db.sequelize.define("mensalistas", {
         type: db.Sequelize.INTEGER
     },
 
+    dataAdmissao: {
+        type: db.Sequelize.DATEONLY
+    },
+
+    dataRecisao: {
+        type: db.Sequelize.DATEONLY
+    },
+
     idCliente: {
         type: db.Sequelize.INTEGER
     }

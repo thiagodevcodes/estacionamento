@@ -7,7 +7,7 @@ const Cliente = db.sequelize.define("clientes", {
 
     tipoCliente: {
         type: db.Sequelize.STRING
-    }
+    },
 })
 
 module.exports = Cliente

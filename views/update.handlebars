@@ -10,17 +10,16 @@
     <div class="aluno-update">
         <div class="aluno-update-content">
             <header class="modal-header">
-                <img src="/img/servico-de-gestao.png" class="modal-img" alt="">
-                <h2>Editar Ordem</h2>
+                <img src="/img/carro.png" class="modal-img" alt="">
+                <h2>Editar Rotativo</h2>
             </header>
-            <form action="/{{id}}" method="POST" class="modal-form">
-                <input class="modal-field" placeholder="Nome" type="text" name="nome" value="{{nome}}" required/> 
-                <input class="modal-field" placeholder="CPF" type="text" name="cpf" value="{{cpf}}" required/> 
-                <input class="modal-field" placeholder="Telefone" type="text" name="telefone" value="{{telefone}}" required/>
-                <input class="modal-field" onkeypress="return onlynumber();" placeholder="Valor" type="text" name="valor" value="{{valor}}" required/>
-                <input class="modal-field" placeholder="Local" type="text" name="local" value="{{local}}" required/>
-                <input class="modal-field" placeholder="Data" type="date" name="data" value="{{data}}" required/>
-                <input class="modal-field" placeholder="Descricao" type="text" name="descricao" value="{{descricao}}" required/>
+            <form action="/{{rotativo.id}}" method="POST" class="modal-form">
+                <input class="modal-field" placeholder="Nome" type="text" name="nome" value="{{cliente.nome}}" required/> 
+                <input class="modal-field" placeholder="Marca" type="text" name="marca" value="{{veiculo.marca}}" required/> 
+                <input class="modal-field" placeholder="Modelo" type="text" name="modelo" value="{{veiculo.modelo}}" required/>
+                <input class="modal-field" placeholder="Placa" type="text" name="placa" value="{{veiculo.placa}}" required/>
+                <input class="modal-field" placeholder="Cor" type="text" name="cor" value="{{veiculo.cor}}" required/>
+                <input class="modal-field" placeholder="Hora Entrada" type="time" name="horaentrada" step="2" value="{{rotativo.horaEntrada}}" required/>
                 <div class="modal-buttons">
                     <button class="button green" type="submit">Enviar</button>
                     <a class="update-link" href="/"><button type="button" class="button green">Voltar</button></a>

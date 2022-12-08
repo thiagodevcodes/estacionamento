@@ -22,7 +22,7 @@
         <ul class="nav-list">
           <li><button class="button-nav" onclick="ModalAluno()">Cadastrar Rotativo</button></li>
           <li><a class="button-nav" href="/">Rotativos</a></li>
-          <li><a class="button-nav" href="/mensalista">Mensalistas</a></li>
+          <li><a class="button-nav" href="/">Mensalistas</a></li>
           {{#if user.admin}}
             <li><a class="button-nav" href="/users">Usuários</a></li>
             
@@ -57,53 +57,28 @@
         <input class="registros-search" id="searchbar" placeholder="Buscar..."/>
     </div>
 
-    <div class="box-container">
-        {{#each posts}}
-            {{#if horasaida}}
-            {{else}}
-            <div class="box-child">  
-                <p>Nome: {{nome}}</p>
-                <p>Marca: {{marca}}</p>
-                <p>Modelo: {{modelo}}</p>
-                <p>Placa: {{placa}}</p>
-                <p>Cor: {{cor}}</p>
-                <p>Hora Entrada: {{horaentrada}}</p>
-                <div class="box-buttons">
-                    <a href="/{{id}}"><button class="box-button"><img class="box-img" width="20px" src="/img/lapis.png" alt=""></button></a> 
-                    <a href="/finalizar/{{id}}"><button class="box-button"><img class="box-img" src="/img/lixeira.png" alt=""></button></a>
-                </div>
-            </div>  
-            {{/if}}
-        {{/each}}
-    </div>
-
-    <!--
     <div class="registros-mat">
         <table id="tabela" class="table">
             <thead >
                 <tr class="table-head">
-                    <th>Nº da Ordem</th>
                     <th>Nome</th>
                     <th>CPF</th>
                     <th>Telefone</th>
-                    <th>Valor</th>
-                    <th>Local</th>
-                    <th>Data</th>
-                    <th>Descrição</th>
+                    <th>Email</th>
+                    <th>Dia de Vencimento</th>
+                    <th>Data de Admissão</th>
                     <th colspan="2">Opções</th>
                 </tr>
             </thead>
         
             <tbody id="body-table">    
                     <tr>
-                        <td>{{id}}</td>
                         <td>{{nome}}</td>
                         <td>{{cpf}}</td>
                         <td>{{telefone}}</td>
-                        <td>{{valor}}</td>
-                        <td>{{local}}</td>
-                        <td>{{data}}</td>
-                        <td>{{descricao}}</td>
+                        <td>{{email}}</td>
+                        <td>{{diaVencimento}}</td>
+                        <td>{{dataAdmissao}}</td>
                         <td class="td-button">
                             <a href="/{{id}}"><button class="registros-button"><img class="img-button" width="20px" src="/img/lapis.png" alt=""></button></a> 
                         </td>
@@ -113,8 +88,7 @@
                     </tr>			
                 
             </tbody>
-        </table> 
-        -->               
+        </table>            
     </div>
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>

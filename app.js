@@ -7,13 +7,10 @@ const passport = require('passport');
 const session = require('express-session');
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
-const Users = require("./models/Users");
-const Cliente = require("./models/Cliente");
-const Mensalista = require("./models/Mensalista");
-const Veiculo = require("./models/Veiculo")
-const indexRouter = require('./routes/index');
+const rotativoRouter = require('./routes/rotativo');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
+const mensalistaRouter = require("./routes/mensalista");
 
 function authenticationMiddleware(req, res, next) {
   if (req.isAuthenticated()) return next();
@@ -24,12 +21,6 @@ function adminMiddleware(req, res, next) {
   if(req.isAuthenticated() && req.user.admin == 1) return next();
   res.redirect("/");
 }
-
-Cliente.sync({force: true})
-Users.sync({force: true})
-Veiculo.sync({force: true})
-Mensalista.sync({force: true})
-
 
 const app = express();
 
@@ -54,7 +45,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
 require('./auth')(passport);
 
 app.use(session({  
@@ -74,7 +64,9 @@ app.use((req,res,next) => {
 
 app.use('/login', loginRouter);
 app.use('/users', authenticationMiddleware, adminMiddleware, usersRouter);
-app.use('/', authenticationMiddleware, indexRouter);
+app.use("/mensalista", authenticationMiddleware, adminMiddleware, mensalistaRouter);
+app.use('/', authenticationMiddleware, rotativoRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

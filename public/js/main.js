@@ -41,7 +41,7 @@ function onlynumber(evt) {
 $(document).ready(function() {
 	$("#searchbar").on("keyup", function() {
 		var value = $(this).val().toLowerCase();
-		$("#body-table tr").filter(function() {
+		$(".box-child").filter(function() {
 			$(this).toggle($(this).text()
 			.toLowerCase().indexOf(value) > -1)
 		});
