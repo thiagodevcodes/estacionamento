@@ -7,8 +7,10 @@ const passport = require('passport');
 const session = require('express-session');
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
-const db = require("./models/db")
-
+const Users = require("./models/Users");
+const Cliente = require("./models/Cliente");
+const Mensalista = require("./models/Mensalista");
+const Veiculo = require("./models/Veiculo")
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
@@ -22,6 +24,11 @@ function adminMiddleware(req, res, next) {
   if(req.isAuthenticated() && req.user.admin == 1) return next();
   res.redirect("/");
 }
+
+Cliente.sync({force: true})
+Users.sync({force: true})
+Veiculo.sync({force: true})
+Mensalista.sync({force: true})
 
 
 const app = express();
