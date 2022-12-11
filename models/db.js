@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 
-let database = 'carros'
+let database = 'estacionamento'
 let username = 'thiago'
 let password = '34616096' 
 

@@ -12,6 +12,20 @@ const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const mensalistaRouter = require("./routes/mensalista");
 
+/*
+const mensalista = require("./models/Mensalista");
+const rotativo = require("./models/Rotativo");
+const cliente = require("./models/Cliente");
+const veiculo = require("./models/Veiculo");
+const user = require("./models/Users");
+
+mensalista.sync({force: true})
+rotativo.sync({force: true})
+cliente.sync({force: true})
+veiculo.sync({force: true})
+user.sync({force: true})
+*/
+
 function authenticationMiddleware(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect('/login');
@@ -21,6 +35,7 @@ function adminMiddleware(req, res, next) {
   if(req.isAuthenticated() && req.user.admin == 1) return next();
   res.redirect("/");
 }
+
 
 const app = express();
 
@@ -64,7 +79,7 @@ app.use((req,res,next) => {
 
 app.use('/login', loginRouter);
 app.use('/users', authenticationMiddleware, adminMiddleware, usersRouter);
-app.use("/mensalista", authenticationMiddleware, adminMiddleware, mensalistaRouter);
+app.use("/mensalista", authenticationMiddleware, mensalistaRouter);
 app.use('/', authenticationMiddleware, rotativoRouter);
 
 

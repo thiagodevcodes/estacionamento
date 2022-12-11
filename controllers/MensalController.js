@@ -1,13 +1,18 @@
 const Mensalista = require("../models/Mensalista")
+const date = new Date();
+
+
 
 module.exports = {
-    createMensalista: async function(req, res) {
-        return await Mensalista.create({ 
+    createMensalista: async function(req, res, cliente) {
+        return await Mensalista.create({
             cpf: req.body.cpf,
             email: req.body.email,
             telefone: req.body.telefone,
             diaVencimento: req.body.diavencimento,
-            idCliente: req.body.idcliente
+            dataAdmissao: date.toLocaleDateString(),
+            dataRecisao: null,
+            idCliente: cliente.id
         })
     },
 
@@ -40,7 +45,7 @@ module.exports = {
     },
 
     finallyMensalista: async function(req,res) {
-        return await Mensalista.update({ ativo: false }, {
+        return await Mensalista.update({ dataRecisao: date.toLocaleDateString() }, {
             where: {
                 id: req.params.id
             }

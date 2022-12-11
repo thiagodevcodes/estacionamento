@@ -70,6 +70,11 @@ body {
 
 .img-button {
     width: 25px;
+    filter: invert(1);
+}
+
+#body-table > tr > td {
+    height: 50px;
 }
 
 .table {
