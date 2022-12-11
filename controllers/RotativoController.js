@@ -1,4 +1,6 @@
-const Rotativo = require("../models/Rotativo")
+const Cliente = require("../models/Cliente");
+const Rotativo = require("../models/Rotativo");
+const Veiculo = require("../models/Veiculo");
 const date = new Date();
 
 module.exports = {
@@ -20,20 +22,40 @@ module.exports = {
         })
     },
 
-    readRotativo: async function(req, res) {
+    readRotativo: async function(req,res) {
         return await Rotativo.findOne({
             where: {
-                id: req.params.id            
+                id: req.params.id    
             }
         })
     },
 
-    updateRotativo: async function(req,res) {
-        return await Rotativo.update({ 
-            horaEntrada: req.body.horaentrada
+    updateRotativo: async function(req, res, rotativo) {
+        await Rotativo.update({ 
+            horaEntrada: req.body.horaentrada,
+            dataAtendimento: req.body.dataatendimento
          }, {
             where: {
                 id: req.params.id
+            }
+        })
+
+        await Cliente.update({
+            nome: req.body.nome
+        }, {
+            where: {
+                id: rotativo.idCliente
+            }
+        })
+
+        await Veiculo.update({
+            marca: req.body.marca,
+            modelo: req.body.modelo,
+            placa: req.body.placa,
+            cor: req.body.cor
+        }, {
+            where: {
+                id: rotativo.idVeiculo
             }
         })
     },

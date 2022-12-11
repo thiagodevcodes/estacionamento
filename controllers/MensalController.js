@@ -1,4 +1,5 @@
 const Mensalista = require("../models/Mensalista")
+const Cliente = require("../models/Cliente")
 const date = new Date();
 
 
@@ -28,10 +29,18 @@ module.exports = {
         })
     },
 
-    updateMensalista: async function(req,res) {
-        return await Mensalista.update({ ...req.body }, {
+    updateMensalista: async function(req,res, mensalista) {
+        await Mensalista.update({ ...req.body }, {
             where: {
                 id: req.params.id
+            }
+        })
+
+        await Cliente.update({
+            nome: req.body.nome
+        }, {
+            where: {
+                id: mensalista.idCliente
             }
         })
     },

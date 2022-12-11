@@ -13,10 +13,10 @@ module.exports = {
         return await Cliente.findAll()
     },
 
-    readCliente: async function(req, res) {
+    readCliente: async function(id) {
         return await Cliente.findOne({
             where: {
-                id: req.params.id
+                id: id
             }
         })
     },

@@ -11,7 +11,6 @@ const rotativoRouter = require('./routes/rotativo');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const mensalistaRouter = require("./routes/mensalista");
-
 /*
 const mensalista = require("./models/Mensalista");
 const rotativo = require("./models/Rotativo");
@@ -19,12 +18,13 @@ const cliente = require("./models/Cliente");
 const veiculo = require("./models/Veiculo");
 const user = require("./models/Users");
 
-mensalista.sync({force: true})
-rotativo.sync({force: true})
-cliente.sync({force: true})
-veiculo.sync({force: true})
-user.sync({force: true})
+//mensalista.sync({force: true})
+//rotativo.sync({force: true})
+//cliente.sync({force: true})
+//veiculo.sync({force: true})
+//user.sync({force: true})
 */
+
 
 function authenticationMiddleware(req, res, next) {
   if (req.isAuthenticated()) return next();
@@ -46,7 +46,15 @@ app.engine("handlebars", handlebars.engine({defaultLayout: "main", runtimeOption
   allowProtoMethodsByDefault: true
 }}));
 
+
 app.set("view engine", "handlebars");
+
+app.use( function(req, res, next) {
+  if (req.originalUrl && req.originalUrl.split("/").pop() === 'favicon.ico') {
+    return res.sendStatus(204);
+  }
+ next();
+});
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());

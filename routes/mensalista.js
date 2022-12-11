@@ -2,6 +2,7 @@ const express = require('express');
 const ClienteContoller = require("../controllers/ClienteController")
 const MensalistaContoller = require("../controllers/MensalController");
 const db = require("../models/db")
+const RotativoController = require("../controllers/RotativoController");
 var router = express.Router();
 
 
@@ -22,7 +23,7 @@ router.post("/", async(req, res) => {
 
 router.get("/finalizar/:id", async(req, res) => {
   await MensalistaContoller.finallyMensalista(req,res).then(() => {
-    res.redirect("/")
+    res.redirect("/mensalista")
   }).catch( () => {
     res.send("not found")
   })
@@ -32,16 +33,15 @@ router.get("/finalizar/:id", async(req, res) => {
 //READ
 
 router.get("/", async(req, res) => {
-  const mensalista = await db.sequelize.query("SELECT mensalistas.id, clientes.nome, mensalistas.cpf, mensalistas.telefone, mensalistas.email, mensalistas.diaVencimento, mensalistas.dataAdmissao, mensalistas.dataRecisao FROM mensalistas, clientes WHERE clientes.id = mensalistas.idCliente")
-  console.log(mensalista[0])
+  const mensalista = await db.sequelize.query("SELECT mensalistas.id, clientes.nome, mensalistas.cpf, mensalistas.telefone, mensalistas.email, mensalistas.diaVencimento, mensalistas.dataAdmissao, mensalistas.dataRecisao, mensalistas.idCliente FROM mensalistas, clientes WHERE clientes.id = mensalistas.idCliente")
   res.render("mensal", {
     posts: mensalista[0]
   })
 })
 
 router.get("/:id", async(req, res) => {
-  const cliente = await ClienteContoller.readCliente(req, res);
   const mensalista = await MensalistaContoller.readMensalista(req, res);
+  const cliente = await ClienteContoller.readCliente(mensalista.idCliente);
 
   res.render("updatemensal", {
     cliente: cliente,
@@ -52,9 +52,9 @@ router.get("/:id", async(req, res) => {
 //UPDATE
 
 router.post("/:id", async(req, res) => {
-  await ClienteContoller.updateCliente(req,res);
-  await MensalistaContoller.updateMensalista(req, res);
-
+  let mensalista = await MensalistaContoller.readMensalista(req, res);
+  await MensalistaContoller.updateMensalista(req, res, mensalista);
+  
   res.redirect("/mensalista")
 })
 

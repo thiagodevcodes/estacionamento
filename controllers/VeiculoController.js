@@ -15,10 +15,10 @@ module.exports = {
         return await Veiculo.findAll()  
     },
 
-    readVeiculo: async function(req, res) {
+    readVeiculo: async function(id) {
         return await Veiculo.findOne({
             where: {
-                id: req.params.id
+                id: id
             }
         })
     },
