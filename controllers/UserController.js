@@ -30,7 +30,7 @@ module.exports = {
             }
         })
 
-        res.redirect("/")
+        res.redirect("/users")
     },
 
     finallyUser: async function(req,res) {
@@ -40,7 +40,7 @@ module.exports = {
             }
         })
 
-        res.redirect("/")
+        res.redirect("/users")
     },
 
     adminUser: async function(req,res) {
@@ -91,6 +91,6 @@ module.exports = {
             }
         })
 
-        res.redirect("/")
+        res.redirect("/users")
     }
 }

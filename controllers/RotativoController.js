@@ -14,7 +14,7 @@ module.exports = {
         })
     },
 
-    readRotativos: async function(req,res) {
+    readRotativos: async function() {
         return await Rotativo.findAll({
             where: {
                 horaSaida: null
@@ -22,26 +22,26 @@ module.exports = {
         })
     },
 
-    readRotativo: async function(req,res) {
+    readRotativo: async function(id) {
         return await Rotativo.findOne({
             where: {
-                id: req.params.id    
+                id: id    
             }
         })
     },
 
-    updateRotativo: async function(req, res, rotativo) {
+    updateRotativo: async function(body, rotativo) {
         await Rotativo.update({ 
-            horaEntrada: req.body.horaentrada,
-            dataAtendimento: req.body.dataatendimento
+            horaEntrada: body.horaentrada,
+            dataAtendimento: body.dataatendimento
          }, {
             where: {
-                id: req.params.id
+                id: rotativo.id
             }
         })
 
         await Cliente.update({
-            nome: req.body.nome
+            nome: body.nome
         }, {
             where: {
                 id: rotativo.idCliente
@@ -49,10 +49,10 @@ module.exports = {
         })
 
         await Veiculo.update({
-            marca: req.body.marca,
-            modelo: req.body.modelo,
-            placa: req.body.placa,
-            cor: req.body.cor
+            marca: body.marca,
+            modelo: body.modelo,
+            placa: body.placa,
+            cor: body.cor
         }, {
             where: {
                 id: rotativo.idVeiculo
@@ -60,18 +60,18 @@ module.exports = {
         })
     },
 
-    deleteRotativo: async function(req,res) {
+    deleteRotativo: async function(id) {
         return await Rotativo.destroy({
             where: {
-                id: req.params.id
+                id: id
             }
         })
     },
 
-    finallyRotativo: async function(req,res) {       
+    finallyRotativo: async function(id) {       
         await Rotativo.update({ horaSaida: date.toLocaleTimeString() }, {
             where: {
-                id: req.params.id
+                id: id
             }
         })
     }

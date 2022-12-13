@@ -5,7 +5,7 @@ const date = new Date();
 
 
 module.exports = {
-    createMensalista: async function(req, res, cliente) {
+    createMensalista: async function(req, cliente) {
         return await Mensalista.create({
             cpf: req.body.cpf,
             email: req.body.email,
@@ -17,22 +17,32 @@ module.exports = {
         })
     },
 
-    readMensalistas: async function(req,res) {
-        return await Mensalista.findAll()
-    },
-
-    readMensalista: async function(req,res) {
-        return await Mensalista.findOne({
+    readMensalistas: async function() {
+        return await Mensalista.findAll({
             where: {
-                id: req.params.id
+                dataRecisao: null
             }
         })
     },
 
-    updateMensalista: async function(req,res, mensalista) {
-        await Mensalista.update({ ...req.body }, {
+    readMensalista: async function(id) {
+        return await Mensalista.findOne({
             where: {
-                id: req.params.id
+                id: id
+            }
+        })
+    },
+
+    updateMensalista: async function(req, mensalista) {
+        await Mensalista.update({
+            cpf: req.body.cpf,
+            email: req.body.email,
+            telefone: req.body.telefone,
+            diaVencimento: req.body.diavencimento,
+            dataAdmissao: req.body.dataadmissao
+        }, {
+            where: {
+                id: mensalista.id
             }
         })
 
@@ -45,18 +55,18 @@ module.exports = {
         })
     },
 
-    deleteMensalista: async function(req,res) {
+    deleteMensalista: async function(id) {
         return await Mensalista.destroy({
             where: {
-                id: req.params.id
+                id: id
             }
         })
     },
 
-    finallyMensalista: async function(req,res) {
+    finallyMensalista: async function(id) {
         return await Mensalista.update({ dataRecisao: date.toLocaleDateString() }, {
             where: {
-                id: req.params.id
+                id: id
             }
         })
     }

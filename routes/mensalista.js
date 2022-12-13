@@ -14,7 +14,7 @@ router.post("/", async(req, res) => {
     tipoCliente: 'Mensalista',
   });
 
-  await MensalistaContoller.createMensalista(req, res, cliente);
+  await MensalistaContoller.createMensalista(req, cliente);
   res.redirect("/mensalista")
 })
 
@@ -22,7 +22,7 @@ router.post("/", async(req, res) => {
 //FINNALY
 
 router.get("/finalizar/:id", async(req, res) => {
-  await MensalistaContoller.finallyMensalista(req,res).then(() => {
+  await MensalistaContoller.finallyMensalista(req.params.id).then(() => {
     res.redirect("/mensalista")
   }).catch( () => {
     res.send("not found")
@@ -40,7 +40,7 @@ router.get("/", async(req, res) => {
 })
 
 router.get("/:id", async(req, res) => {
-  const mensalista = await MensalistaContoller.readMensalista(req, res);
+  const mensalista = await MensalistaContoller.readMensalista(req.params.id);
   const cliente = await ClienteContoller.readCliente(mensalista.idCliente);
 
   res.render("updatemensal", {
@@ -52,8 +52,8 @@ router.get("/:id", async(req, res) => {
 //UPDATE
 
 router.post("/:id", async(req, res) => {
-  let mensalista = await MensalistaContoller.readMensalista(req, res);
-  await MensalistaContoller.updateMensalista(req, res, mensalista);
+  let mensalista = await MensalistaContoller.readMensalista(req.params.id);
+  await MensalistaContoller.updateMensalista(req, mensalista);
   
   res.redirect("/mensalista")
 })

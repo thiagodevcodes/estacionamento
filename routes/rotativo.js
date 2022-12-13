@@ -13,6 +13,7 @@ router.post("/", async(req, res) => {
     nome: req.body.nome,
     tipoCliente: 'Rotativo',
   });
+
   const veiculo = await VeiculoController.createVeiculo({
     marca: req.body.marca,
     modelo: req.body.modelo,
@@ -37,7 +38,7 @@ router.get("/", async(req, res) => {
 })
 
 router.get("/:id", async(req, res) => {
-  const rotativo = await RotativoController.readRotativo(req, res);
+  const rotativo = await RotativoController.readRotativo(req.params.id);
   const cliente = await ClienteController.readCliente(rotativo.idCliente);
   const veiculo = await VeiculoController.readVeiculo(rotativo.idVeiculo);
 
@@ -51,19 +52,18 @@ router.get("/:id", async(req, res) => {
 //UPDATE
 
 router.post("/:id", async(req, res) => {
-  let rotativo = await RotativoController.readRotativo(req, res);
-  await RotativoController.updateRotativo(req, res, rotativo);
+  let rotativo = await RotativoController.readRotativo(req.params.id);
+  await RotativoController.updateRotativo(req.body, rotativo);
   
   res.redirect("/")
 })
 
 router.get("/finalizar/:id", async(req, res) => {
-  await RotativoController.finallyRotativo(req,res).then(() => {
+  await RotativoController.finallyRotativo(req.params.id).then(() => {
     res.redirect("/")
   }).catch( () => {
     res.send("not found")
   })
-  
 })
 
 //DELETE

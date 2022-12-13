@@ -2,14 +2,13 @@ const Cliente = require("../models/Cliente")
 
 module.exports = {
     createCliente: async function(cliente) {
-        const client = await Cliente.create({ 
+        return await Cliente.create({ 
             nome: cliente.nome,
             tipoCliente: cliente.tipoCliente
         })
-        return client
     },
 
-    readClientes: async function(req, res) {
+    readClientes: async function() {
         return await Cliente.findAll()
     },
 
@@ -21,7 +20,7 @@ module.exports = {
         })
     },
 
-    updateCliente: async function(req,res) {
+    updateCliente: async function(req) {
         await Cliente.update({ 
             nome: req.body.nome
          }, {
@@ -31,19 +30,11 @@ module.exports = {
         })
     },
 
-    deleteCliente: async function(req,res) {
+    deleteCliente: async function(id) {
         return await Ordens.destroy({
             where: {
-                id: req.params.id
+                id: id
             }
         })
     },
-
-    finallyCliente: async function(req,res) {
-        return await Cliente.update({ ativo: false }, {
-            where: {
-                id: req.params.id
-            }
-        })
-    }
 }
