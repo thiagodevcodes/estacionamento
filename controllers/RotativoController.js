@@ -1,16 +1,20 @@
 const Cliente = require("../models/Cliente");
 const Rotativo = require("../models/Rotativo");
 const Veiculo = require("../models/Veiculo");
+const Vaga = require("../models/Vagas");
 const date = new Date();
 
 module.exports = {
-    createRotativo: async function(veiculo, cliente) {
+    createRotativo: async function(veiculo, cliente, vaga) {
+        console.log(`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`)
+
         return await Rotativo.create({ 
-            dataAtendimento: date.toLocaleDateString(),
+            dataAtendimento: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
             horaEntrada: date.toLocaleTimeString(),
             horaSaida: null,
             idCliente: cliente.id,
-            idVeiculo: veiculo.id
+            idVeiculo: veiculo.id,
+            idVaga: vaga.id
         })
     },
 
@@ -68,7 +72,17 @@ module.exports = {
         })
     },
 
-    finallyRotativo: async function(id) {       
+    finallyRotativo: async function(id) {     
+        const rotativo = await this.readRotativo(id);
+  
+        await Vaga.update({
+            situacao: false
+        }, {
+            where: {
+                id: rotativo.idVaga
+            }
+        })
+
         await Rotativo.update({ horaSaida: date.toLocaleTimeString() }, {
             where: {
                 id: id

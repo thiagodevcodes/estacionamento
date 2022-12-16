@@ -1,6 +1,7 @@
 const db = require("./db");
 const Cliente = require("./Cliente");
 const Veiculo = require("./Veiculo");
+const Vagas = require("./Vagas");
 
 const Rotativo = db.sequelize.define("rotativos", {
     dataAtendimento: {
@@ -21,10 +22,14 @@ const Rotativo = db.sequelize.define("rotativos", {
 
     idVeiculo: {
         type: db.Sequelize.INTEGER
+    },
+
+    idVaga: {
+        type: db.Sequelize.INTEGER
     }
 })
 
 Rotativo.belongsTo(Cliente, {foreignKey: 'idCliente', allowNull: false})
 Rotativo.belongsTo(Veiculo, {foreignKey: 'idVeiculo', allowNull: false})
-
+Rotativo.belongsTo(Vagas, {foreignKey: 'idVaga', allowNull: false})
 module.exports = Rotativo

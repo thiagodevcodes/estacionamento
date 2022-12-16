@@ -10,10 +10,10 @@
     <div class="aluno-update">
         <div class="aluno-update-content">
             <header class="modal-header">
-                <img src="/img/carro.png" class="modal-img" alt="">
+                <img src="/img/mensal.png" class="modal-img" alt="">
                 <h2>Editar Mensalista</h2>
             </header>
-            <form action="/mensalista/{{mensalista.id}}" method="POST" class="modal-form">
+            <form action="/mensalistas/{{mensalista.id}}" method="POST" class="modal-form">
                 <input class="modal-field" placeholder="Nome" type="text" name="nome" value="{{cliente.nome}}" required/> 
                 <input class="modal-field" placeholder="CPF" type="text" name="cpf" value="{{mensalista.cpf}}" required/> 
                 <input class="modal-field" placeholder="Telefone" type="text" name="telefone" value="{{mensalista.telefone}}" required/>
@@ -22,7 +22,7 @@
                 <input class="modal-field" placeholder="Data da Admissão" type="date" name="dataadmissao" step="2" value="{{mensalista.dataAdmissao}}" required/>
                 <div class="modal-buttons">
                     <button class="button green" type="submit">Enviar</button>
-                    <a class="update-link" href="/mensalista"><button type="button" class="button green">Voltar</button></a>
+                    <a class="update-link" href="/mensalistas"><button type="button" class="button green">Voltar</button></a>
                 </div>
             </form>
         </div>

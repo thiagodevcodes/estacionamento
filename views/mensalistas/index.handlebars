@@ -21,8 +21,9 @@
         </div>
         <ul class="nav-list">
           <li><button class="button-nav" onclick="ModalAluno()">Cadastrar Mensalista</button></li>
-          <li><a class="button-nav" href="/">Rotativos</a></li>
-          <li><a class="button-nav" href="/mensalista">Mensalistas</a></li>
+          <li><a class="button-nav" href="/rotativos">Rotativos</a></li>
+          <li><a class="button-nav" href="/mensalistas">Mensalistas</a></li>
+          <li><a class="button-nav" href="/vagas">Vagas</a></li>
           {{#if user.admin}}
             <li><a class="button-nav" href="/users">Usuários</a></li>
             
@@ -35,7 +36,7 @@
     <div class="modal" id="modalAluno">
         <div class="modal-content">
             <header class="modal-header">
-                <img src="/img/servico-de-gestao.png" class="modal-img" alt="">
+                <img src="/img/mensal.png" class="modal-img" alt="">
                 <h2 style="font-weight: bold;">Novo Mensalista</h2>
             </header>
             <form action="/mensalista" method="POST" class="modal-form">
@@ -51,7 +52,11 @@
             </form>
         </div>
     </div>
-    
+
+    <div class="vagas-title-container">
+        <img class="vagas-title-img" src="/img/mensal.png" alt="">
+        <h1 class="vagas-title">Mensalistas</h1>
+    </div>
     
     <div class="registros-group">
         <input class="registros-search" id="searchbar" placeholder="Buscar..."/>
@@ -83,11 +88,11 @@
                             <td>{{diaVencimento}}</td>
                             <td>{{dataAdmissao}}</td>
                             <td class="td-button">
-                                <a href="/mensalista/{{id}}"><button class="registros-button"><img class="img-button" width="20px" src="/img/lapis.png" alt=""></button></a> 
+                                <a href="/mensalistas/{{id}}"><button class="registros-button back-orange"><img class="box-img" width="20px" src="/img/lapis.png" alt=""></button></a> 
                             </td>
 
                             <td class="td-button">
-                                <a href="/mensalista/finalizar/{{id}}"><button class="registros-button"><img class="img-button" style="filter: invert(1);" width="20px" src="/img/lixeira.png" alt=""></button></a>
+                                <a href="/mensalistas/finalizar/{{id}}"><button class="registros-button back-red"><img class="box-img" width="20px" src="/img/lixeira.png" alt=""></button></a>
                             </td>
                         </tr>
                     {{/if}}			

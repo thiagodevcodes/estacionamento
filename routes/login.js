@@ -4,14 +4,14 @@ const passport = require('passport');
 
 router.get('/', (req, res, next) => {
     if (req.query.fail)
-    res.render('login', { message: 'Usuário e/ou senha incorretos!' });
+    res.render('login/index', { message: 'Usuário e/ou senha incorretos!' });
     else
-    res.render('login', { message: null });
+    res.render('login/index', { message: null });
 });
 
 router.post('/',
     passport.authenticate('local', { 
-        successRedirect: '/', 
+        successRedirect: '/rotativos', 
         failureRedirect: '/login?fail=true'
     })
 );

@@ -76,7 +76,7 @@ module.exports = {
             }
         })
         .then( (posts) => {
-          res.render("users", {
+          res.render("usuarios/index", {
             posts: posts
           }) 
         }).catch( () => {

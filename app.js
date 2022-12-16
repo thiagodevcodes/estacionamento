@@ -11,20 +11,24 @@ const rotativoRouter = require('./routes/rotativo');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const mensalistaRouter = require("./routes/mensalista");
+const vagasRouter = require("./routes/vagas");
+require("dotenv").config();
+
 /*
 const mensalista = require("./models/Mensalista");
-const rotativo = require("./models/Rotativo");
 const cliente = require("./models/Cliente");
 const veiculo = require("./models/Veiculo");
 const user = require("./models/Users");
+const rotativo = require("./models/Rotativo");
+const vaga = require("./models/Vagas");
 
 //mensalista.sync({force: true})
-//rotativo.sync({force: true})
+//vaga.sync({force: true});
 //cliente.sync({force: true})
 //veiculo.sync({force: true})
 //user.sync({force: true})
+//rotativo.sync({force: true})
 */
-
 
 function authenticationMiddleware(req, res, next) {
   if (req.isAuthenticated()) return next();
@@ -87,8 +91,9 @@ app.use((req,res,next) => {
 
 app.use('/login', loginRouter);
 app.use('/users', authenticationMiddleware, adminMiddleware, usersRouter);
-app.use("/mensalista", authenticationMiddleware, mensalistaRouter);
-app.use('/', authenticationMiddleware, rotativoRouter);
+app.use('/vagas', authenticationMiddleware, vagasRouter);
+app.use("/mensalistas", authenticationMiddleware, mensalistaRouter);
+app.use('/rotativos', authenticationMiddleware, rotativoRouter);
 
 
 // catch 404 and forward to error handler

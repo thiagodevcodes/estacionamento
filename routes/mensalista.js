@@ -15,7 +15,7 @@ router.post("/", async(req, res) => {
   });
 
   await MensalistaContoller.createMensalista(req, cliente);
-  res.redirect("/mensalista")
+  res.redirect("/mensalistas")
 })
 
 
@@ -23,7 +23,7 @@ router.post("/", async(req, res) => {
 
 router.get("/finalizar/:id", async(req, res) => {
   await MensalistaContoller.finallyMensalista(req.params.id).then(() => {
-    res.redirect("/mensalista")
+    res.redirect("/mensalistas")
   }).catch( () => {
     res.send("not found")
   })
@@ -34,7 +34,7 @@ router.get("/finalizar/:id", async(req, res) => {
 
 router.get("/", async(req, res) => {
   const mensalista = await db.sequelize.query("SELECT mensalistas.id, clientes.nome, mensalistas.cpf, mensalistas.telefone, mensalistas.email, mensalistas.diaVencimento, mensalistas.dataAdmissao, mensalistas.dataRecisao, mensalistas.idCliente FROM mensalistas, clientes WHERE clientes.id = mensalistas.idCliente")
-  res.render("mensal", {
+  res.render("mensalistas/index", {
     posts: mensalista[0]
   })
 })
@@ -43,7 +43,7 @@ router.get("/:id", async(req, res) => {
   const mensalista = await MensalistaContoller.readMensalista(req.params.id);
   const cliente = await ClienteContoller.readCliente(mensalista.idCliente);
 
-  res.render("updatemensal", {
+  res.render("mensalistas/update", {
     cliente: cliente,
     mensalista: mensalista
   })
@@ -55,7 +55,7 @@ router.post("/:id", async(req, res) => {
   let mensalista = await MensalistaContoller.readMensalista(req.params.id);
   await MensalistaContoller.updateMensalista(req, mensalista);
   
-  res.redirect("/mensalista")
+  res.redirect("/mensalistas")
 })
 
 module.exports = router;

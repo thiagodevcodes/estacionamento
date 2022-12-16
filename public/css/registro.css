@@ -19,6 +19,30 @@ body {
     background-color: #3b3b3b;
 }
 
+.back-green {
+    background-color: rgb(89, 148, 1);
+}
+
+.back-green:hover {
+    background-color: rgb(67, 112, 0);
+}
+
+.back-red {
+    background-color: rgb(190, 1, 1);
+}
+
+.back-red:hover {
+    background-color: rgb(141, 1, 1);
+}
+
+.back-orange {
+    background-color: rgb(201, 130, 0);
+}
+
+.back-orange:hover {
+    background-color: rgb(136, 89, 1);
+}
+
 .registros-search {
     margin: 20px 0;
     padding: 10px;
@@ -31,7 +55,6 @@ body {
 .registros-group {
     display: flex;
     justify-content: center;
-    padding-top: 20px;
     padding-bottom: 20px;
     width: 100%;
 }

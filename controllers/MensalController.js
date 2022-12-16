@@ -11,7 +11,7 @@ module.exports = {
             email: req.body.email,
             telefone: req.body.telefone,
             diaVencimento: req.body.diavencimento,
-            dataAdmissao: date.toLocaleDateString(),
+            dataAdmissao: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
             dataRecisao: null,
             idCliente: cliente.id
         })

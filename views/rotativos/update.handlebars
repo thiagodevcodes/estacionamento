@@ -10,10 +10,10 @@
     <div class="aluno-update">
         <div class="aluno-update-content">
             <header class="modal-header">
-                <img src="/img/carro.png" class="modal-img" alt="">
+                <img src="/img/rotativo.png" class="modal-img" alt="">
                 <h2>Editar Rotativo</h2>
             </header>
-            <form action="/{{rotativo.id}}" method="POST" class="modal-form">
+            <form action="/rotativos/{{rotativo.id}}" method="POST" class="modal-form">
                 <input class="modal-field" placeholder="Nome" type="text" name="nome" value="{{cliente.nome}}" required/> 
                 <input class="modal-field" placeholder="Marca" type="text" name="marca" value="{{veiculo.marca}}" required/> 
                 <input class="modal-field" placeholder="Modelo" type="text" name="modelo" value="{{veiculo.modelo}}" required/>
@@ -23,7 +23,7 @@
                 <input class="modal-field" placeholder="Hora Entrada" type="date" name="dataatendimento" step="2" value="{{rotativo.dataAtendimento}}" required/>
                 <div class="modal-buttons">
                     <button class="button green" type="submit">Enviar</button>
-                    <a class="update-link" href="/"><button type="button" class="button green">Voltar</button></a>
+                    <a class="update-link" href="/rotativos"><button type="button" class="button green">Voltar</button></a>
                 </div>
             </form>
         </div>

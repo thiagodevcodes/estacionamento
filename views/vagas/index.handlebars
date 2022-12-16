@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vagas</title>
+</head>
+<body>
+    <header>
+      <nav>
+        <div class="logo">
+          <img src="/img/carro.png" alt="">
+          <h1>Bem vindo(a), {{user.login}}</h1>
+        </div>
+
+        <div class="mobile-menu">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+        <ul class="nav-list">
+          <li><form action="/vagas" method="POST"><button class="button-nav">Inserir Vaga</button></form></li>
+          <li><a class="button-nav" href="/vagas/remover">Remover Vaga</a></li>
+          <li><a class="button-nav" href="/rotativos">Rotativos</a></li>
+          <li><a class="button-nav" href="/mensalistas">Mensalistas</a></li>
+          <li><a class="button-nav" href="/vagas">Vagas</a></li>
+          <li><a class="button-nav" href="/users">Usuários</a></li>
+          <li><a class="button-nav" href="/login/logout">Sair</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="vagas-title-container">
+        <img class="vagas-title-img" src="/img/vagas.png" alt="">
+        <h1 class="vagas-title">Vagas</h1>
+    </div>
+    
+    <section>
+        <div class="vagas-container">
+        {{#each posts}}
+            {{#if situacao}}
+            <div class="box-vagas box-vagas-ocup" >
+                {{id}}
+            </div>
+            {{else}}
+
+            <div class="box-vagas">
+                {{id}}
+            </div>
+            {{/if}}
+        {{/each}}
+        </div>
+    </section>
+</body>
+</html>

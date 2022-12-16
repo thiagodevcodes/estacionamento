@@ -21,8 +21,9 @@
         </div>
         <ul class="nav-list">
           <li><button class="button-nav" onclick="ModalAluno()">Cadastrar Rotativo</button></li>
-          <li><a class="button-nav" href="/">Rotativos</a></li>
-          <li><a class="button-nav" href="/mensalista">Mensalistas</a></li>
+          <li><a class="button-nav" href="/rotativos">Rotativos</a></li>
+          <li><a class="button-nav" href="/mensalistas">Mensalistas</a></li>
+          <li><a class="button-nav" href="/vagas">Vagas</a></li>
           {{#if user.admin}}
             <li><a class="button-nav" href="/users">Usuários</a></li>
             
@@ -35,15 +36,21 @@
     <div class="modal" id="modalAluno">
         <div class="modal-content">
             <header class="modal-header">
-                <img src="/img/servico-de-gestao.png" class="modal-img" alt="">
+                <img src="/img/rotativo.png" class="modal-img" alt="">
                 <h2 style="font-weight: bold;">Novo Rotativo</h2>
             </header>
-            <form action="/" method="POST" class="modal-form">
+            <form action="/rotativos" method="POST" class="modal-form">
                 <input class="modal-field" placeholder="Nome" type="text" name="nome" required/> 
                 <input class="modal-field" placeholder="Marca" type="text" name="marca" required/> 
                 <input class="modal-field" placeholder="Modelo" type="text" name="modelo"required/>
                 <input class="modal-field" placeholder="Placa" type="text" name="placa" required/>
                 <input class="modal-field" placeholder="Cor" type="text" name="cor"required/>
+                <p>Vaga Ocupada</p>
+                <select name="vagas" id="select">
+                    {{#each vagas}}
+                        <option value="{{id}}">{{id}}</option>
+                    {{/each}}
+                </select>
                 <div class="modal-buttons">
                     <button class="button green" type="submit">Enviar</button>
                     <button class="button green" id="cadClose" onclick="ModalAluno()" type="button">Fechar</button>
@@ -51,11 +58,20 @@
             </form>
         </div>
     </div>
+
+    
+    <div class="vagas-title-container">
+        <img class="vagas-title-img" src="/img/rotativo.png" alt="">
+        <h1 class="vagas-title">Rotativos</h1>
+    </div>
+
     
     
     <div class="registros-group">
         <input class="registros-search" id="searchbar" placeholder="Buscar..."/>
     </div>
+
+    
 
     <div class="box-container">
         {{#each posts}}
@@ -70,54 +86,14 @@
                 <p>Data Entrada: {{dataatendimento}}</p>
                 <p>Hora Entrada: {{horaentrada}}</p>
                 <div class="box-buttons">
-                    <a href="/{{id}}"><button class="box-button"><img class="box-img" width="20px" src="/img/lapis.png" alt=""></button></a> 
-                    <a href="/finalizar/{{id}}"><button class="box-button"><img class="box-img" src="/img/check.png" alt=""></button></a>
+                    <a href="/rotativos/{{id}}"><button class="registros-button back-orange"><img class="box-img" width="20px" src="/img/lapis.png" alt=""></button></a> 
+                    <a href="/rotativos/finalizar/{{id}}"><button class="registros-button back-green"><img class="box-img" src="/img/check.png" alt=""></button></a>
                 </div>
             </div>  
             {{/if}}
         {{/each}}
+    </div>      
     </div>
-
-    <!--
-    <div class="registros-mat">
-        <table id="tabela" class="table">
-            <thead >
-                <tr class="table-head">
-                    <th>Nº da Ordem</th>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>Telefone</th>
-                    <th>Valor</th>
-                    <th>Local</th>
-                    <th>Data</th>
-                    <th>Descrição</th>
-                    <th colspan="2">Opções</th>
-                </tr>
-            </thead>
-        
-            <tbody id="body-table">    
-                    <tr>
-                        <td>{{id}}</td>
-                        <td>{{nome}}</td>
-                        <td>{{cpf}}</td>
-                        <td>{{telefone}}</td>
-                        <td>{{valor}}</td>
-                        <td>{{local}}</td>
-                        <td>{{data}}</td>
-                        <td>{{descricao}}</td>
-                        <td class="td-button">
-                            <a href="/{{id}}"><button class="registros-button"><img class="img-button" width="20px" src="/img/lapis.png" alt=""></button></a> 
-                        </td>
-                        <td class="td-button">
-                            <a href="/finalizar/{{id}}"><button class="registros-button"><img class="img-button" style="filter: invert(1);" width="20px" src="/img/lixeira.png" alt=""></button></a>
-                        </td>
-                    </tr>			
-                
-            </tbody>
-        </table> 
-        -->               
-    </div>
-
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script src="/js/main.js"></script>    
 </body>
