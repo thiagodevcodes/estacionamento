@@ -2,7 +2,7 @@ const express = require('express');
 const ClienteContoller = require("../controllers/ClienteController")
 const MensalistaContoller = require("../controllers/MensalController");
 const db = require("../models/db")
-const RotativoController = require("../controllers/RotativoController");
+const VagasController = require("../controllers/VagasController");
 var router = express.Router();
 
 
@@ -14,7 +14,11 @@ router.post("/", async(req, res) => {
     tipoCliente: 'Mensalista',
   });
 
-  await MensalistaContoller.createMensalista(req, cliente);
+  const vaga = await VagasController.readVaga(req.body.vagas)
+
+  await VagasController.updateVagas(req,res);
+
+  await MensalistaContoller.createMensalista(req, cliente, vaga);
   res.redirect("/mensalistas")
 })
 
@@ -34,8 +38,10 @@ router.get("/finalizar/:id", async(req, res) => {
 
 router.get("/", async(req, res) => {
   const mensalista = await db.sequelize.query("SELECT mensalistas.id, clientes.nome, mensalistas.cpf, mensalistas.telefone, mensalistas.email, mensalistas.diaVencimento, mensalistas.dataAdmissao, mensalistas.dataRecisao, mensalistas.idCliente FROM mensalistas, clientes WHERE clientes.id = mensalistas.idCliente")
+  const vagas = await VagasController.readVagasLivres();
   res.render("mensalistas/index", {
-    posts: mensalista[0]
+    posts: mensalista[0],
+    vagas: vagas
   })
 })
 

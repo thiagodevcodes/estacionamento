@@ -9,6 +9,10 @@ const Users = db.sequelize.define("usuarios", {
         type: db.Sequelize.STRING
     },
 
+    email: {
+        type: db.Sequelize.STRING
+    },
+
     salt: {
         type: db.Sequelize.STRING
     },

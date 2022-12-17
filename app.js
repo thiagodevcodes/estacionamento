@@ -14,21 +14,29 @@ const mensalistaRouter = require("./routes/mensalista");
 const vagasRouter = require("./routes/vagas");
 require("dotenv").config();
 
-/*
-const mensalista = require("./models/Mensalista");
-const cliente = require("./models/Cliente");
-const veiculo = require("./models/Veiculo");
-const user = require("./models/Users");
-const rotativo = require("./models/Rotativo");
-const vaga = require("./models/Vagas");
 
-//mensalista.sync({force: true})
-//vaga.sync({force: true});
-//cliente.sync({force: true})
-//veiculo.sync({force: true})
-//user.sync({force: true})
-//rotativo.sync({force: true})
+/*
+const user = require("./models/Users");
+user.sync({force: true})
+const cliente = require("./models/Cliente");
+cliente.sync({force: true})
+const veiculo = require("./models/Veiculo");
+veiculo.sync({force: true})
+const rotativo = require("./models/Rotativo");
+rotativo.sync({force: true})
+const vaga = require("./models/Vagas");
+vaga.sync({force: true});
+const rotativo = require("./models/Rotativo");
+rotativo.sync({force: true})
+const mensalista = require("./models/Mensalista");
+mensalista.sync({force: true})
+const vaga = require("./models/Vagas");
+vaga.sync({force: true});
 */
+
+
+
+
 
 function authenticationMiddleware(req, res, next) {
   if (req.isAuthenticated()) return next();
@@ -37,7 +45,7 @@ function authenticationMiddleware(req, res, next) {
 
 function adminMiddleware(req, res, next) {
   if(req.isAuthenticated() && req.user.admin == 1) return next();
-  res.redirect("/");
+  res.redirect("/login");
 }
 
 

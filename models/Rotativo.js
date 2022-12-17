@@ -31,5 +31,5 @@ const Rotativo = db.sequelize.define("rotativos", {
 
 Rotativo.belongsTo(Cliente, {foreignKey: 'idCliente', allowNull: false})
 Rotativo.belongsTo(Veiculo, {foreignKey: 'idVeiculo', allowNull: false})
-Rotativo.belongsTo(Vagas, {foreignKey: 'idVaga', allowNull: false})
+
 module.exports = Rotativo

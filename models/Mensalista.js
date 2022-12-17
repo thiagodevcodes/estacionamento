@@ -28,6 +28,10 @@ const Mensalista = db.sequelize.define("mensalistas", {
 
     idCliente: {
         type: db.Sequelize.INTEGER
+    },
+
+    idVaga: {
+        type: db.Sequelize.INTEGER
     }
 })
 

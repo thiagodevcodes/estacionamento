@@ -5,7 +5,15 @@
     align-items: center;
     color: white;
     gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 20px;    
+}
+
+.section-vagas {
+    position: relative;
+    padding-left: 170px;
+    margin-top: 100px;
+    width: 100%;
+    z-index: -1;
 }
 
 .box-button {
@@ -33,6 +41,7 @@
     padding: 20px;
     width: 300px;
     border-radius: 25px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .box-buttons {
@@ -45,8 +54,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background-color: black;
     color: white;
     border-radius: 30px;
@@ -75,3 +84,12 @@
     justify-content: center;
     align-items: center;
 }
+
+@media (max-width: 999px) {
+    .section-vagas {
+        padding: 0;
+        margin-bottom: 50px;
+        left: 0;
+        width: 100%;
+    } 
+ }

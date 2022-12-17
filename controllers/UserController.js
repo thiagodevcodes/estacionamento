@@ -7,6 +7,7 @@ module.exports = {
             let user = {
               login: req.body.login,
               senha: hashedPassword,
+              email: req.body.email,
               salt: 10,
               admin: req.body.admin || false,
               ativo: true

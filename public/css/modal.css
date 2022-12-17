@@ -7,6 +7,7 @@
     background: #00000090;
     display: none;
     z-index: -1;
+    font-family: 'Poppins', sans-serif;
 }
 
 .modal.active{
@@ -22,7 +23,7 @@
     display: flex;
     flex-direction: column;
     gap:20px;
-    width: 320px;
+    width: 400px;
     padding-bottom: 20px;
     background-color: white;
     border-radius: 10px;
@@ -35,7 +36,7 @@
     justify-content: center;
     line-height: 40px;
     font-size: 16pt;
-    font-family: 'Lobster', cursive;
+    font-family: 'Poppins', sans-serif;
     align-items: center;
 }
 
@@ -101,6 +102,34 @@
 
 .button:hover{
     background-color: #3b3b3b
+}
+
+.aluno-update {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+}
+
+.aluno-update-content {
+    transform: translate(-50%, -50%);
+    position: relative;
+    left: 50%;
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    width: 350px;
+    padding-bottom: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px;
+}
+
+.update-link {
+    color: white;
+    width: 100%; 
 }
 
 

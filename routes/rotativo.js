@@ -35,7 +35,7 @@ router.post("/", async(req, res) => {
 //READ
 
 router.get("/", async(req, res) => {
-  const rotativo = await db.sequelize.query("SELECT rotativos.id, clientes.nome, veiculos.marca, veiculos.modelo, veiculos.placa, veiculos.cor, rotativos.dataatendimento, rotativos.horaentrada, rotativos.horasaida, rotativos.idcliente, rotativos.idveiculo FROM veiculos, rotativos, clientes WHERE veiculos.id = rotativos.idVeiculo AND clientes.id = rotativos.idCliente")
+  const rotativo = await db.sequelize.query("SELECT rotativos.id, clientes.nome, veiculos.marca, veiculos.modelo, veiculos.placa, veiculos.cor, rotativos.dataatendimento, rotativos.horaentrada, rotativos.horasaida, rotativos.idcliente, rotativos.idveiculo FROM veiculos, rotativos, clientes WHERE veiculos.id = rotativos.idVeiculo AND clientes.id = rotativos.idCliente AND rotativos.horaSaida IS null")
   const vagas = await VagasController.readVagasLivres();
   res.render("rotativos/index", {
     posts: rotativo[0],

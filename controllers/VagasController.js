@@ -48,10 +48,14 @@ module.exports = {
     },
 
     deleteVaga: async function(numero) {
-        return await Vagas.destroy({
-            where: {
-                id: numero
-            }
-        })
+        let vaga = await this.readVaga(numero);
+
+        if(vaga.situacao == false) {
+            await Vagas.destroy({
+                where: {
+                    id: numero
+                }
+            })
+        }
     }
 }

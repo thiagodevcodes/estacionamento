@@ -1,11 +1,13 @@
 const Mensalista = require("../models/Mensalista")
 const Cliente = require("../models/Cliente")
-const date = new Date();
+const Vaga = require("../models/Vagas")
+
 
 
 
 module.exports = {
-    createMensalista: async function(req, cliente) {
+    createMensalista: async function(req, cliente, vaga) {
+        const date = new Date();
         return await Mensalista.create({
             cpf: req.body.cpf,
             email: req.body.email,
@@ -13,7 +15,8 @@ module.exports = {
             diaVencimento: req.body.diavencimento,
             dataAdmissao: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
             dataRecisao: null,
-            idCliente: cliente.id
+            idCliente: cliente.id,
+            idVaga: vaga.id
         })
     },
 
@@ -64,7 +67,19 @@ module.exports = {
     },
 
     finallyMensalista: async function(id) {
-        return await Mensalista.update({ dataRecisao: date.toLocaleDateString() }, {
+        const mensalista = await this.readMensalista(id);
+        const date = new Date();
+        console.log(mensalista.idVaga)
+  
+        await Vaga.update({
+            situacao: false
+        }, {
+            where: {
+                id: mensalista.idVaga
+            }
+        })
+
+        return await Mensalista.update({ dataRecisao: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}` }, {
             where: {
                 id: id
             }

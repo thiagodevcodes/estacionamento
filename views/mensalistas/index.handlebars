@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensalistas</title>
 </head>
-<body>
-    <header>
+<body class="layout">
+    <header class="header-main">
+
       <nav>
         <div class="logo">
-          <img src="/img/carro.png" alt="">
+          <img src="/img/logo.png" alt="">
           <h1>Bem vindo(a), {{user.login}}</h1>
         </div>
 
@@ -20,18 +21,24 @@
           <div class="line3"></div>
         </div>
         <ul class="nav-list">
-          <li><button class="button-nav" onclick="ModalAluno()">Cadastrar Mensalista</button></li>
-          <li><a class="button-nav" href="/rotativos">Rotativos</a></li>
-          <li><a class="button-nav" href="/mensalistas">Mensalistas</a></li>
-          <li><a class="button-nav" href="/vagas">Vagas</a></li>
-          {{#if user.admin}}
-            <li><a class="button-nav" href="/users">Usuários</a></li>
-            
-          {{/if}}
-          <li><a class="button-nav" href="/login/logout">Sair</a></li>
+            <li class="button-sair"><img src="/img/user-logo.png" alt=""><a class="button-nav" href="/login/logout">Sair</a></li>
         </ul>
       </nav>
+
     </header>
+
+    <aside class="aside-main">
+        <nav>
+            <ul>
+                <li><img src="/img/mensalista.png" alt=""><a href="/mensalistas">Mensalistas</a></li>
+                <li><img src="/img/rotativos.png" alt=""><a href="/rotativos">Rotativos</a></li>
+                <li><img src="/img/vaga.png" alt=""><a href="/vagas">Vagas</a></li>
+                {{#if user.admin}}
+                    <li><img src="/img/users.png" alt=""><a href="/users">Usuários</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    </aside>
 
     <div class="modal" id="modalAluno">
         <div class="modal-content">
@@ -39,12 +46,17 @@
                 <img src="/img/mensal.png" class="modal-img" alt="">
                 <h2 style="font-weight: bold;">Novo Mensalista</h2>
             </header>
-            <form action="/mensalista" method="POST" class="modal-form">
+            <form action="/mensalistas" method="POST" class="modal-form">
                 <input class="modal-field" placeholder="Nome" type="text" name="nome" required/> 
                 <input class="modal-field" placeholder="CPF" type="text" name="cpf" required/> 
                 <input class="modal-field" placeholder="Telefone" type="text" name="telefone"required/>
                 <input class="modal-field" placeholder="Email" type="text" name="email" required/>
                 <input class="modal-field" placeholder="Dia de Vencimento" type="text" name="diavencimento"required/>
+                <select name="vagas" id="select">
+                    {{#each vagas}}
+                        <option value="{{id}}">{{id}}</option>
+                    {{/each}}
+                </select>
                 <div class="modal-buttons">
                     <button class="button green" type="submit">Enviar</button>
                     <button class="button green" id="cadClose" onclick="ModalAluno()" type="button">Fechar</button>
@@ -52,26 +64,24 @@
             </form>
         </div>
     </div>
+  
+    <main class="main">
 
-    <div class="vagas-title-container">
-        <img class="vagas-title-img" src="/img/mensal.png" alt="">
-        <h1 class="vagas-title">Mensalistas</h1>
-    </div>
-    
-    <div class="registros-group">
-        <input class="registros-search" id="searchbar" placeholder="Buscar..."/>
+    <div class="main-group">
+        <button onclick="ModalAluno()"><img src="/img/add.png" alt=""> Adicionar Novo Mensalista</button>
+        <input id="searchbar" placeholder="Buscar..."/>
     </div>
 
-    <div class="registros-mat">
-        <table id="tabela" class="table">
+    <div class="tables-container">
+        <table id="tabela" class="tables-table">
             <thead >
                 <tr class="table-head">
                     <th>Nome</th>
                     <th>CPF</th>
                     <th>Telefone</th>
                     <th>Email</th>
-                    <th>Dia de Vencimento</th>
-                    <th>Data de Admissão</th>
+                    <th>Vencimento</th>
+                    <th>Admissão</th>
                     <th colspan="2">Opções</th>
                 </tr>
             </thead>
@@ -88,11 +98,11 @@
                             <td>{{diaVencimento}}</td>
                             <td>{{dataAdmissao}}</td>
                             <td class="td-button">
-                                <a href="/mensalistas/{{id}}"><button class="registros-button back-orange"><img class="box-img" width="20px" src="/img/lapis.png" alt=""></button></a> 
+                                <a href="/mensalistas/{{id}}"><button><img src="/img/pencil.png" alt=""></button></a> 
                             </td>
 
                             <td class="td-button">
-                                <a href="/mensalistas/finalizar/{{id}}"><button class="registros-button back-red"><img class="box-img" width="20px" src="/img/lixeira.png" alt=""></button></a>
+                                <a href="/mensalistas/finalizar/{{id}}"><button><img src="/img/checkb.png" alt=""></button></a>
                             </td>
                         </tr>
                     {{/if}}			
@@ -100,7 +110,7 @@
             </tbody>
         </table>            
     </div>
-
+    </main>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script src="/js/main.js"></script>    
 </body>

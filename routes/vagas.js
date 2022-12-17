@@ -5,7 +5,7 @@ var router = express.Router();
 
 //CREATE
 
-router.post("/", async(req, res) => {
+router.get("/adicionar", async(req, res) => {
     await VagasController.createVaga()
     res.redirect("/vagas")
 })
@@ -25,7 +25,7 @@ router.get("/", async(req, res) => {
 //DELETE
 
 router.get("/remover", async(req, res) => {
-    const vagas = await db.sequelize.query("SELECT numero FROM vagas")
+    const vagas = await db.sequelize.query("SELECT id FROM vagas")
     await VagasController.deleteVaga(vagas[0].length);
     res.redirect("/vagas")
 })

@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rotativos</title>
 </head>
-<body>
-    <header>
+<body class="layout">
+    <header class="header-main">
+
       <nav>
         <div class="logo">
-          <img src="/img/carro.png" alt="">
+          <img src="/img/logo.png" alt="">
           <h1>Bem vindo(a), {{user.login}}</h1>
         </div>
 
@@ -20,18 +21,25 @@
           <div class="line3"></div>
         </div>
         <ul class="nav-list">
-          <li><button class="button-nav" onclick="ModalAluno()">Cadastrar Rotativo</button></li>
-          <li><a class="button-nav" href="/rotativos">Rotativos</a></li>
-          <li><a class="button-nav" href="/mensalistas">Mensalistas</a></li>
-          <li><a class="button-nav" href="/vagas">Vagas</a></li>
-          {{#if user.admin}}
-            <li><a class="button-nav" href="/users">Usuários</a></li>
-            
-          {{/if}}
-          <li><a class="button-nav" href="/login/logout">Sair</a></li>
+            <li class="button-sair"><img src="/img/user-logo.png" alt=""><a class="button-nav" href="/login/logout">Sair</a></li>
         </ul>
       </nav>
+
     </header>
+
+    <aside class="aside-main">
+
+        <nav>
+            <ul>
+                <li><img src="/img/mensalista.png" alt=""><a href="/mensalistas">Mensalistas</a></li>
+                <li><img src="/img/rotativos.png" alt=""><a href="/rotativos">Rotativos</a></li>
+                <li><img src="/img/vaga.png" alt=""><a href="/vagas">Vagas</a></li>
+                {{#if user.admin}}
+                    <li><img src="/img/users.png" alt=""><a href="/users">Usuários</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    </aside>
 
     <div class="modal" id="modalAluno">
         <div class="modal-content">
@@ -59,41 +67,51 @@
         </div>
     </div>
 
-    
-    <div class="vagas-title-container">
-        <img class="vagas-title-img" src="/img/rotativo.png" alt="">
-        <h1 class="vagas-title">Rotativos</h1>
+    <main class="main">
+
+    <div class="main-group">
+        <button onclick="ModalAluno()"><img src="/img/add.png" alt=""> Adicionar Novo Rotativo</button>
+        <input id="searchbar" placeholder="Buscar..."/>
+    </div> 
+
+    <div class="tables-container">
+        <table id="tabela" class="tables-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Placa</th>
+                    <th>Cor</th>
+                    <th>Data</th>
+                    <th>Horário de Entrada</th>
+                    <th colspan="2">Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each posts}} 
+                <tr>
+                    <td>{{nome}}</td>
+                    <td>{{marca}}</td>
+                    <td>{{modelo}}</td>
+                    <td>{{placa}}</td>
+                    <td>{{cor}}</td>
+                    <td>{{dataatendimento}}</td>
+                    <td>{{horaentrada}}</td>
+                    <td class="td-button">
+                        <a href="/rotativos/{{id}}"><button><img src="/img/pencil.png" alt=""></button></a> 
+                    </td>
+
+                    <td class="td-button">
+                        <a href="/rotativos/finalizar/{{id}}"><button><img src="/img/checkb.png" alt=""></button></a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
     </div>
 
-    
-    
-    <div class="registros-group">
-        <input class="registros-search" id="searchbar" placeholder="Buscar..."/>
-    </div>
-
-    
-
-    <div class="box-container">
-        {{#each posts}}
-            {{#if horasaida}}
-            {{else}}
-            <div class="box-child">  
-                <p>Nome: {{nome}}</p>
-                <p>Marca: {{marca}}</p>
-                <p>Modelo: {{modelo}}</p>
-                <p>Placa: {{placa}}</p>
-                <p>Cor: {{cor}}</p>
-                <p>Data Entrada: {{dataatendimento}}</p>
-                <p>Hora Entrada: {{horaentrada}}</p>
-                <div class="box-buttons">
-                    <a href="/rotativos/{{id}}"><button class="registros-button back-orange"><img class="box-img" width="20px" src="/img/lapis.png" alt=""></button></a> 
-                    <a href="/rotativos/finalizar/{{id}}"><button class="registros-button back-green"><img class="box-img" src="/img/check.png" alt=""></button></a>
-                </div>
-            </div>  
-            {{/if}}
-        {{/each}}
-    </div>      
-    </div>
+    </main>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script src="/js/main.js"></script>    
 </body>
