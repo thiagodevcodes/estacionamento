@@ -21,7 +21,7 @@
           <div class="line3"></div>
         </div>
         <ul class="nav-list">
-            <li class="button-sair"><img src="/img/user-logo.png" alt=""><a class="button-nav" href="/login/logout">Sair</a></li>
+            <li class="button-sair"><img src="/img/user-logo.png" alt=""><a class="button-nav" href="/logout">Sair</a></li>
         </ul>
       </nav>
 
@@ -52,11 +52,14 @@
                 <input class="modal-field" placeholder="Telefone" type="text" name="telefone"required/>
                 <input class="modal-field" placeholder="Email" type="text" name="email" required/>
                 <input class="modal-field" placeholder="Dia de Vencimento" type="text" name="diavencimento"required/>
-                <select name="vagas" id="select">
-                    {{#each vagas}}
-                        <option value="{{id}}">{{id}}</option>
-                    {{/each}}
-                </select>
+                <div class="select-vagas-container">
+                    <p>Vaga Disponíveis</p>
+                    <select name="vagas" id="select">
+                        {{#each vagas}}
+                            <option value="{{id}}">{{id}}</option>
+                        {{/each}}
+                    </select>
+                </div>
                 <div class="modal-buttons">
                     <button class="button green" type="submit">Enviar</button>
                     <button class="button green" id="cadClose" onclick="ModalAluno()" type="button">Fechar</button>

@@ -27,6 +27,10 @@
     align-items: center;
 }
 
+.main-group p {
+    font-family: 'Poppins', sans-serif;
+}
+
 .main-group button {
     font-family: 'Poppins', sans-serif;
     font-weight: bold;

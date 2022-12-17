@@ -21,6 +21,14 @@ module.exports = {
         })  
     },
 
+    readVagasOcupadas: async function() {
+        return await Vagas.findAll({
+            where: {
+                situacao: true
+            }
+        })  
+    },
+
     readVaga: async function(id) {
         return await Vagas.findOne({
             where: {

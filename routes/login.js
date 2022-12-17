@@ -12,12 +12,12 @@ router.get('/', (req, res, next) => {
 router.post('/',
     passport.authenticate('local', { 
         successRedirect: '/rotativos', 
-        failureRedirect: '/login?fail=true'
+        failureRedirect: '/?fail=true'
     })
 );
 
 router.get("/logout", (req, res) => {
-    res.clearCookie('connect.sid').redirect("/login");
+    res.clearCookie('connect.sid').redirect("/");
 })
 
 

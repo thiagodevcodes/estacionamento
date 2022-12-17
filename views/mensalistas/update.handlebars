@@ -6,27 +6,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atualizar Matricula</title>
 </head>
-<body>
-    <div class="aluno-update">
-        <div class="aluno-update-content">
-            <header class="modal-header">
-                <img src="/img/mensal.png" class="modal-img" alt="">
-                <h2>Editar Mensalista</h2>
-            </header>
-            <form action="/mensalistas/{{mensalista.id}}" method="POST" class="modal-form">
-                <input class="modal-field" placeholder="Nome" type="text" name="nome" value="{{cliente.nome}}" required/> 
-                <input class="modal-field" placeholder="CPF" type="text" name="cpf" value="{{mensalista.cpf}}" required/> 
-                <input class="modal-field" placeholder="Telefone" type="text" name="telefone" value="{{mensalista.telefone}}" required/>
-                <input class="modal-field" placeholder="Email" type="email" name="email" value="{{mensalista.email}}" required/>
-                <input class="modal-field" placeholder="Dia do Vencimento" type="text" name="diavencimento" value="{{mensalista.diaVencimento}}" required/>
-                <input class="modal-field" placeholder="Data da Admissão" type="date" name="dataadmissao" step="2" value="{{mensalista.dataAdmissao}}" required/>
+<body class="layout">
+        <header class="header-main">
+
+      <nav>
+        <div class="logo">
+          <img src="/img/logo.png" alt="">
+          <h1>Bem vindo(a), {{user.login}}</h1>
+        </div>
+
+        <div class="mobile-menu">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+        <ul class="nav-list">
+            <li class="button-sair"><img src="/img/user-logo.png" alt=""><a class="button-nav" href="/logout">Sair</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <aside class="aside-main">
+
+        <nav>
+            <ul>
+                <li><img src="/img/mensalista.png" alt=""><a href="/mensalistas">Mensalistas</a></li>
+                <li><img src="/img/rotativos.png" alt=""><a href="/rotativos">Rotativos</a></li>
+                <li><img src="/img/vaga.png" alt=""><a href="/vagas">Vagas</a></li>
+                {{#if user.admin}}
+                    <li><img src="/img/users.png" alt=""><a href="/users">Usuários</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <div class="box-update">
+            <form action="/mensalistas/{{mensalista.id}}" method="POST">
+                <header>
+                    <h2>Editar Mensalista</h2>
+                </header>
+                <div class="input-container">
+                    <div>
+                        <label for="nome">Nome: </label>
+                        <input placeholder="Nome" type="text" name="nome" value="{{cliente.nome}}" required/> 
+                        
+                        <label for="cpf">CPF: </label>
+                        <input placeholder="CPF" type="text" name="cpf" value="{{mensalista.cpf}}" required/> 
+                    </div>
+                    <div>
+                        <label for="telefone">Telefone: </label>
+                        <input placeholder="Telefone" type="text" name="telefone" value="{{mensalista.telefone}}" required/>
+                        
+                        <label for="email">Email: </label>
+                        <input placeholder="Email" type="email" name="email" value="{{mensalista.email}}" required/>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <div>
+                        <label for="diavencimento">Dia Vencimento: </label>
+                        <input style="width: 150px;" placeholder="Dia do Vencimento" type="text" name="diavencimento" value="{{mensalista.diaVencimento}}" required/>
+                    </div>
+                    <div>
+                        <label for="dataadmissao">Data Admissão:</label>
+                        <input style="width: 155px;" placeholder="Data da Admissão" type="date" name="dataadmissao" step="2" value="{{mensalista.dataAdmissao}}" required/>
+                    </div>
+                </div>
+                
+                
+                
+                
                 <div class="modal-buttons">
                     <button class="button green" type="submit">Enviar</button>
                     <a class="update-link" href="/mensalistas"><button type="button" class="button green">Voltar</button></a>
                 </div>
             </form>
         </div>
-    </div>
+    </main>
     <script src="/js/main.js"></script>  
 </body>
 </html>

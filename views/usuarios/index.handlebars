@@ -20,7 +20,7 @@
           <div class="line3"></div>
         </div>
         <ul class="nav-list">
-            <li class="button-sair"><img src="/img/user-logo.png" alt=""><a class="button-nav" href="/login/logout">Sair</a></li>
+            <li class="button-sair"><img src="/img/user-logo.png" alt=""><a class="button-nav" href="/logout">Sair</a></li>
         </ul>
       </nav>
     </header>
@@ -46,9 +46,9 @@
             </header>
             <form action="/users" method="POST" class="modal-form">
                 <input class="modal-field" placeholder="Login" type="text" name="login"required/> 
+                <input class="modal-field" placeholder="Email" type="email" name="email" required/>
                 <input class="modal-field" placeholder="Senha" type="password" name="senha" required/>
                 <input class="modal-field" placeholder="Confirmação de Senha" type="password" name="confirm"required/>
-                <input class="modal-field" placeholder="Email" type="email" name="email" required/>
                 <div class="caduser-boxinput">
                     <label class="modal-label" for="admin">Admin</label>
                     <input class="modal-checkbox" value="true" name="admin" id="admin" type="checkbox">

@@ -34,10 +34,6 @@ const vaga = require("./models/Vagas");
 vaga.sync({force: true});
 */
 
-
-
-
-
 function authenticationMiddleware(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect('/login');
@@ -97,7 +93,7 @@ app.use((req,res,next) => {
   next()
 })
 
-app.use('/login', loginRouter);
+app.use('/', loginRouter);
 app.use('/users', authenticationMiddleware, adminMiddleware, usersRouter);
 app.use('/vagas', authenticationMiddleware, vagasRouter);
 app.use("/mensalistas", authenticationMiddleware, mensalistaRouter);

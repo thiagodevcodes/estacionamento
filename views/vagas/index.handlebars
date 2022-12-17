@@ -20,7 +20,7 @@
           <div class="line3"></div>
         </div>
         <ul class="nav-list">
-            <li class="button-sair"><img src="/img/user-logo.png" alt=""><a class="button-nav" href="/login/logout">Sair</a></li>
+            <li class="button-sair"><img src="/img/user-logo.png" alt=""><a class="button-nav" href="/logout">Sair</a></li>
         </ul>
       </nav>
     </header>
@@ -40,8 +40,15 @@
 
     <main class="main">
         <div class="main-group">
-            <a href="/vagas/adicionar"><img src="/img/add.png" alt=""> Adicionar Vaga</button></a>
-            <a href="/vagas/remover"><img src="/img/remove.png" alt=""> Remover Vaga</button></a>
+            <div>
+                <p>Vagas Disponíveis: {{vagasLivres.length}}</p>
+                <p>Vagas Ocupadas: {{vagasOcup.length}}</p>
+            </div>
+            <div>
+                <a href="/vagas/adicionar"><img src="/img/add.png" alt=""> Adicionar Vaga</button></a>
+                <a href="/vagas/remover"><img src="/img/remove.png" alt=""> Remover Vaga</button></a>
+            </div>
+
         </div> 
           <div class="vagas-container">
           {{#each posts}}
