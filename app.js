@@ -15,25 +15,6 @@ const vagasRouter = require("./routes/vagas");
 require("dotenv").config();
 
 
-/*
-const user = require("./models/Users");
-user.sync({force: true})
-const cliente = require("./models/Cliente");
-cliente.sync({force: true})
-const veiculo = require("./models/Veiculo");
-veiculo.sync({force: true})
-const rotativo = require("./models/Rotativo");
-rotativo.sync({force: true})
-const vaga = require("./models/Vagas");
-vaga.sync({force: true});
-const rotativo = require("./models/Rotativo");
-rotativo.sync({force: true})
-const mensalista = require("./models/Mensalista");
-mensalista.sync({force: true})
-const vaga = require("./models/Vagas");
-vaga.sync({force: true});
-*/
-
 function authenticationMiddleware(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect('/');
