@@ -23,15 +23,15 @@ module.exports = {
         })
     },
 
-    updateVeiculo: async function(req,res) {
+    updateVeiculo: async function(veiculo, id) {
         await Veiculo.update({
-            marca: req.body.marca,
-            modelo: req.body.modelo,
-            placa: req.body.placa,
-            cor: req.body.cor
+            marca: veiculo.marca,
+            modelo: veiculo.modelo,
+            placa: veiculo.placa,
+            cor: veiculo.cor
          }, {
             where: {
-                id: req.params.id
+                id: id
             }
         })
     },

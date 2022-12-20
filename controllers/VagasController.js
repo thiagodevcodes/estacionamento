@@ -37,31 +37,23 @@ module.exports = {
         })
     },
 
-    updateVagas: async function(req,res) {
-        const vaga = Vagas.findOne({
-            where: {
-                id: req.body.vagas
-            }
-        })
-
-        const situacao = vaga.situacao
-        
+    updateVagas: async function(vaga, id) {       
         await Vagas.update({
-            situacao: !situacao
+            situacao: vaga.situacao
          }, {
             where: {
-                id: req.body.vagas
+                id: id
             }
         })
     },
 
-    deleteVaga: async function(numero) {
-        let vaga = await this.readVaga(numero);
+    deleteVaga: async function(id) {
+        let vaga = await this.readVaga(id);
 
         if(vaga.situacao == false) {
             await Vagas.destroy({
                 where: {
-                    id: numero
+                    id: id
                 }
             })
         }

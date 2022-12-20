@@ -1,9 +1,4 @@
 const Mensalista = require("../models/Mensalista")
-const Cliente = require("../models/Cliente")
-const Vaga = require("../models/Vagas")
-
-
-
 
 module.exports = {
     createMensalista: async function(req, cliente, vaga) {
@@ -36,50 +31,24 @@ module.exports = {
         })
     },
 
-    updateMensalista: async function(req, mensalista) {
+    updateMensalista: async function(mensalista, id) {
         await Mensalista.update({
-            cpf: req.body.cpf,
-            email: req.body.email,
-            telefone: req.body.telefone,
-            diaVencimento: req.body.diavencimento,
-            dataAdmissao: req.body.dataadmissao
+            cpf: mensalista.cpf,
+            email: mensalista.email,
+            telefone: mensalista.telefone,
+            diaVencimento: mensalista.diaVencimento,
+            dataAdmissao: mensalista.dataAdmissao,
+            dataRecisao: mensalista.dataRecisao,
+            idVaga: mensalista.idVaga
         }, {
-            where: {
-                id: mensalista.id
-            }
-        })
-
-        await Cliente.update({
-            nome: req.body.nome
-        }, {
-            where: {
-                id: mensalista.idCliente
-            }
-        })
-    },
-
-    deleteMensalista: async function(id) {
-        return await Mensalista.destroy({
             where: {
                 id: id
             }
         })
     },
 
-    finallyMensalista: async function(id) {
-        const mensalista = await this.readMensalista(id);
-        const date = new Date();
-        console.log(mensalista.idVaga)
-  
-        await Vaga.update({
-            situacao: false
-        }, {
-            where: {
-                id: mensalista.idVaga
-            }
-        })
-
-        return await Mensalista.update({ dataRecisao: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}` }, {
+    deleteMensalista: async function(id) {
+        return await Mensalista.destroy({
             where: {
                 id: id
             }

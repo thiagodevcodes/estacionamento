@@ -43,51 +43,60 @@
         <div class="box-update">
             <form action="/rotativos/{{rotativo.id}}" method="POST">
                 <header>
+                    <img style="filter: invert(1); width: 30px; margin-right: 5px;" src="/img/rotativos.png" alt="">
                     <h2>Editar Rotativo</h2>
                 </header>
-                <div>
-                    <label for="nome">Nome: </label><br>
-                    <input placeholder="Nome" type="text" name="nome" value="{{cliente.nome}}" required/>
-                </div>           
 
                 <div class="input-container">
                     <div>
-                        <label for="nome">Marca: </label><br>
-                        <input placeholder="Marca" type="text" name="marca" value="{{veiculo.marca}}" required/> 
-                    </div> 
-
-                    <div>
-                        <label for="nome">Cor: </label><br>
-                        <input placeholder="Cor" type="text" name="cor" value="{{veiculo.cor}}" required/>
+                        <div>
+                            <label for="nome">Nome: </label>
+                            <input placeholder="Nome" type="text" name="nome" value="{{cliente.nome}}" required/> 
+                        </div>
+                        
+                        <div>
+                            <label for="marca">Marca: </label>
+                            <input placeholder="Marca" type="text" name="marca" value="{{veiculo.marca}}" required/> 
+                        </div>
                     </div>
                 </div>
-
 
                 <div class="input-container">
                     <div>
-                        <label for="nome">Modelo: </label><br>
-                        <input placeholder="Modelo" type="text" name="modelo" value="{{veiculo.modelo}}" required/>
-                    </div>
-                    
-                    <div>
-                        <label for="nome">Placa: </label><br>
-                        <input placeholder="Placa" type="text" name="placa" value="{{veiculo.placa}}" required/>
+                        <div>
+                            <label for="nome">Modelo: </label>
+                            <input placeholder="Modelo" type="text" name="modelo" value="{{veiculo.modelo}}" required/> 
+                        </div>
+
+                        <div>
+                            <label for="nome">Placa: </label>
+                            <input placeholder="Placa" type="text" name="placa" value="{{veiculo.placa}}" required/> 
+                        </div>
                     </div>
                 </div>
-
 
                 <div class="input-container">
-                <div>
-                    <label for="nome">Hora Entrada: </label>
-                    <input style="width: 155px;" placeholder="Hora Entrada" type="time" name="horaentrada" step="2" value="{{rotativo.horaEntrada}}" required/>
-                </div>
-                
-                <div>
-                    <label for="nome">Data: </label>
-                    <input style="width: 155px;" placeholder="Hora Entrada" type="date" name="dataatendimento" step="2" value="{{rotativo.dataAtendimento}}" required/>
-                </div>
-                </div>
+                    <div>
+                        <div class="datetime">
+                            <label for="nome">Hora: </label>
+                            <input placeholder="Hora Entrada" type="time" name="horaentrada" step="2" value="{{rotativo.horaEntrada}}" required/>
+                        </div>
 
+                        <div class="datetime">
+                            <label for="nome">Data: </label>
+                            <input placeholder="Hora Entrada" type="date" name="dataatendimento" step="2" value="{{rotativo.dataAtendimento}}" required/>
+                        </div>
+                    </div>
+                </div>
+           
+                <div class="select-vagas-container">
+                    <p>Vaga Disponíveis</p>
+                    <select name="vagas" id="select">
+                        {{#each vagas}}
+                            <option value="{{id}}">{{id}}</option>
+                        {{/each}}
+                    </select>
+                </div>
                 
                 <div class="modal-buttons">
                     <button class="button green" type="submit">Enviar</button>

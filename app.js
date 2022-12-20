@@ -36,12 +36,12 @@ vaga.sync({force: true});
 
 function authenticationMiddleware(req, res, next) {
   if (req.isAuthenticated()) return next();
-  res.redirect('/login');
+  res.redirect('/');
 }
 
 function adminMiddleware(req, res, next) {
   if(req.isAuthenticated() && req.user.admin == 1) return next();
-  res.redirect("/login");
+  res.redirect("/rotativos");
 }
 
 

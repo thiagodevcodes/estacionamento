@@ -20,18 +20,18 @@ module.exports = {
         })
     },
 
-    updateCliente: async function(req) {
+    updateCliente: async function(cliente, id) {
         await Cliente.update({ 
-            nome: req.body.nome
+            nome: cliente.nome
          }, {
             where: {
-                id: req.params.id
+                id: id
             }
         })
     },
 
     deleteCliente: async function(id) {
-        return await Ordens.destroy({
+        return await Cliente.destroy({
             where: {
                 id: id
             }
