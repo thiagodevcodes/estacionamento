@@ -10,7 +10,6 @@ router.get("/adicionar", async(req, res) => {
     res.redirect("/vagas")
 })
 
-
 //READ
 
 router.get("/", async(req, res) => {
@@ -25,8 +24,6 @@ router.get("/", async(req, res) => {
     vagasOcup: vagasOcup
   })
 })
-
-//UPDATE
 
 //DELETE
 

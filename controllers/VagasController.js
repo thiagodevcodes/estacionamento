@@ -33,14 +33,6 @@ module.exports = {
         return result;
     },
 
-    readVagasLivres: async function() {
-        return await Vagas.findAll({
-            where: {
-                situacao: false
-            }
-        })  
-    },
-
     updateVagas: async function(vaga, id) {       
         await Vagas.update({
             situacao: vaga.situacao

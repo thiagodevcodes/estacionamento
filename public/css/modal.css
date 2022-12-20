@@ -17,6 +17,8 @@
 
 .select-vagas-container {
     display: flex;
+    margin: 15px;
+    justify-content: center;
     gap: 10px;
 }
 

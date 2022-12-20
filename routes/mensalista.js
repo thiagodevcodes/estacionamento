@@ -6,7 +6,7 @@ const VagasController = require("../controllers/VagasController");
 var router = express.Router();
 
 
-//POST
+//CREATE
 
 router.post("/", async(req, res) => {
   const cliente = await ClienteController.createCliente({
@@ -21,25 +21,6 @@ router.post("/", async(req, res) => {
   }, req.body.vagas);
 
   await MensalistaController.createMensalista(req, cliente, vaga);
-  res.redirect("/mensalistas")
-})
-
-
-//FINNALY
-
-router.get("/finalizar/:id", async(req, res) => {
-  const date = new Date();
-  const mensalista = await MensalistaController.readMensalista(req.params.id)
-  console.log(mensalista)
-
-  await MensalistaController.updateMensalista({
-    dataRecisao: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
-  }, mensalista.id)
-
-  await VagasController.updateVagas({
-    situacao: false
-  }, mensalista.idVaga)
-
   res.redirect("/mensalistas")
 })
 
@@ -95,6 +76,23 @@ router.post("/:id", async(req, res) => {
   res.redirect("/mensalistas")
 })
 
+router.get("/finalizar/:id", async(req, res) => {
+  const date = new Date();
+  const mensalista = await MensalistaController.readMensalista(req.params.id)
+  console.log(mensalista)
+
+  await MensalistaController.updateMensalista({
+    dataRecisao: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+  }, mensalista.id)
+
+  await VagasController.updateVagas({
+    situacao: false
+  }, mensalista.idVaga)
+
+  res.redirect("/mensalistas")
+})
+
+//DELETE
 
 router.delete("/:id", (req,res) => {
   MensalistaController.deleteMensalista(req.params.id)
