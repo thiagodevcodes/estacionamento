@@ -20,7 +20,4 @@ router.get("/logout", (req, res) => {
     res.clearCookie('connect.sid').redirect("/");
 })
 
-
-
-
 module.exports = router;

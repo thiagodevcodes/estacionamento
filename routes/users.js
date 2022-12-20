@@ -52,6 +52,4 @@ router.get("/finalizar/:id", async(req, res) => {
   UserController.finallyUser(req,res)
 })
 
-
-
 module.exports = router;

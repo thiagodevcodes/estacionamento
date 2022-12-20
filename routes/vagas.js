@@ -34,6 +34,4 @@ router.get("/remover", async(req, res) => {
     res.redirect("/vagas")
 })
 
-
-
 module.exports = router;
