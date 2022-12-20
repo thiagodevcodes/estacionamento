@@ -9,12 +9,13 @@ var router = express.Router();
 //CREATE
 
 router.post("/", async(req, res) => {
+  const vaga = await VagasController.readVaga(req.body.vagas);
+
   const cliente = await ClienteController.createCliente({
     nome: req.body.nome,
     tipoCliente: 'Rotativo',
   });
 
-  const vaga = await VagasController.readVaga(req.body.vagas)
   await VagasController.updateVagas({
     situacao: true
   }, req.body.vagas);
@@ -47,7 +48,7 @@ router.get("/:id", async(req, res) => {
   const rotativo = await RotativoController.readRotativo(req.params.id);
   const cliente = await ClienteController.readCliente(rotativo.idCliente);
   const veiculo = await VeiculoController.readVeiculo(rotativo.idVeiculo);
-  const vagas = await VagasController.readVagasLivres();
+  const vagas = await VagasController.readVagas(false);
 
   res.render("rotativos/update", {
     rotativo: rotativo,

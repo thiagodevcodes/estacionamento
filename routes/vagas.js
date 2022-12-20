@@ -15,8 +15,10 @@ router.get("/adicionar", async(req, res) => {
 
 router.get("/", async(req, res) => {
   const vagas = await VagasController.readVagas();
-  const vagasOcup = await VagasController.readVagasOcupadas();
-  const vagasLivres = await VagasController.readVagasLivres();
+  
+  const vagasOcup = await VagasController.readVagas(true);
+  const vagasLivres = await VagasController.readVagas(false);
+
   res.render("vagas/index", {
     posts: vagas,
     vagasLivres: vagasLivres,

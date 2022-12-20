@@ -57,7 +57,7 @@ router.get("/", async(req, res) => {
 router.get("/:id", async(req, res) => {
   const mensalista = await MensalistaController.readMensalista(req.params.id);
   const cliente = await ClienteController.readCliente(mensalista.idCliente);
-  const vagas = await VagasController.readVagasLivres();
+  const vagas = await VagasController.readVagas(false);
 
   res.render("mensalistas/update", {
     cliente: cliente,

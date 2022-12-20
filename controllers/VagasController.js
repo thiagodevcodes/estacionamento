@@ -6,11 +6,31 @@ module.exports = {
         return await Vagas.create({ 
             id: vagas.length + 1,
             situacao: false
-        })
+        });
     },
 
-    readVagas: async function() {
-        return await Vagas.findAll()  
+    readVagas: async function(ocup=null) {
+        let result;
+
+        if(ocup == null) {
+            result = await Vagas.findAll();
+        } else {
+            if(ocup == true) {
+                result = await Vagas.findAll({
+                    where: {
+                        situacao: true
+                    }
+                });
+            } else {
+                result = await Vagas.findAll({
+                    where: {
+                        situacao: false
+                    }
+                });
+            }
+        }
+
+        return result;
     },
 
     readVagasLivres: async function() {
@@ -19,22 +39,6 @@ module.exports = {
                 situacao: false
             }
         })  
-    },
-
-    readVagasOcupadas: async function() {
-        return await Vagas.findAll({
-            where: {
-                situacao: true
-            }
-        })  
-    },
-
-    readVaga: async function(id) {
-        return await Vagas.findOne({
-            where: {
-                id: id
-            }
-        })
     },
 
     updateVagas: async function(vaga, id) {       
