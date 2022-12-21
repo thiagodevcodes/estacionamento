@@ -8,6 +8,7 @@
     width: 100vw;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
+    background-color: #cccccc;
 }
 
 .login-container > div {
@@ -15,6 +16,7 @@
     background-color: #D9D9D9;
     border-radius: 50px;
     margin:  0;
+    box-shadow: 0 0 5px;
 }
 
 .login-inputs {

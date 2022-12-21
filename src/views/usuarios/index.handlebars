@@ -74,6 +74,7 @@
         <table id="tabela" class="tables-table">
             <thead>
                 <tr>
+                    <th>Código</th>
                     <th>Admin</th>
                     <th>Nome de Usuário</th>
                     <th >Email</th>
@@ -84,6 +85,7 @@
             <tbody>
                 {{#each posts}}
                     <tr>
+                        <td>{{id}}</td>
                         {{#if admin}}
                         <td>
                             Sim
@@ -96,11 +98,11 @@
                         <td>{{login}}</td>
                         <td>{{email}}</td>
                         <td class="td-button">
-                            <a href="/users/permissao/{{id}}"><button><img src="/img/pencil.png" alt=""></button></a> 
+                            <a href="/users/permissao/{{id}}"><button><img src="/img/admin.png" alt=""></button></a> 
                         </td>
 
                         <td class="td-button">
-                            <a href="/users/finalizar/{{id}}"><button><img src="/img/checkb.png" alt=""></button></a>
+                            <a href="/users/finalizar/{{id}}"><button><img src="/img/check.png" alt=""></button></a>
                         </td>
                     </tr>			
                 {{/each}}
