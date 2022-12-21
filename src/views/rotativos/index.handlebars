@@ -81,13 +81,14 @@
         <table id="tabela" class="tables-table">
             <thead>
                 <tr>
+                    <th>Código</th>
                     <th>Nome</th>
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Placa</th>
                     <th>Cor</th>
                     <th>Data</th>
-                    <th>Horário de Entrada</th>
+                    <th>Horário</th>
                     <th>Vaga</th>
                     <th colspan="2">Opções</th>
                 </tr>
@@ -95,6 +96,7 @@
             <tbody>
                 {{#each posts}} 
                 <tr>
+                    <td>{{id}}</td>
                     <td>{{nome}}</td>
                     <td>{{marca}}</td>
                     <td>{{modelo}}</td>

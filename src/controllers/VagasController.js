@@ -9,6 +9,14 @@ module.exports = {
         });
     },
 
+    readVaga: async function(id) {
+        return await Vagas.findOne({
+            where: {
+                id: id
+            }
+        })
+    },
+
     readVagas: async function(ocup=null) {
         let result;
 

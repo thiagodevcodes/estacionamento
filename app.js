@@ -7,11 +7,11 @@ const passport = require('passport');
 const session = require('express-session');
 const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
-const rotativoRouter = require('./routes/rotativo');
-const usersRouter = require('./routes/users');
-const loginRouter = require('./routes/login');
-const mensalistaRouter = require("./routes/mensalista");
-const vagasRouter = require("./routes/vagas");
+const rotativoRouter = require('./src/routes/rotativo');
+const usersRouter = require('./src/routes/users');
+const loginRouter = require('./src/routes/login');
+const mensalistaRouter = require("./src/routes/mensalista");
+const vagasRouter = require("./src/routes/vagas");
 require("dotenv").config();
 
 
@@ -35,7 +35,7 @@ app.engine("handlebars", handlebars.engine({defaultLayout: "main", runtimeOption
   allowProtoMethodsByDefault: true
 }}));
 
-
+app.set("views", path.join(__dirname, 'src', 'views'))
 app.set("view engine", "handlebars");
 
 app.use( function(req, res, next) {
@@ -47,8 +47,6 @@ app.use( function(req, res, next) {
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
-app.use(express.static(path.join(__dirname, "public")))
 
 app.use(logger('dev'));
 app.use(express.json());

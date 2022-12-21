@@ -28,7 +28,7 @@ router.post("/", async(req, res) => {
 
 router.get("/", async(req, res) => {
   const mensalista = await db.sequelize.query("SELECT mensalistas.id, clientes.nome, mensalistas.cpf, mensalistas.telefone, mensalistas.email, mensalistas.diaVencimento, mensalistas.dataAdmissao, mensalistas.dataRecisao, mensalistas.idCliente, mensalistas.idVaga FROM mensalistas, clientes WHERE clientes.id = mensalistas.idCliente")
-  const vagas = await VagasController.readVagasLivres();
+  const vagas = await VagasController.readVagas(false);
   res.render("mensalistas/index", {
     posts: mensalista[0],
     vagas: vagas
