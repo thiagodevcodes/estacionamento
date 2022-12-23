@@ -1,4 +1,4 @@
-const Cliente = require("../models/Cliente")
+const Cliente = require("../models/Cliente");
 
 module.exports = {
     createCliente: async function(cliente) {

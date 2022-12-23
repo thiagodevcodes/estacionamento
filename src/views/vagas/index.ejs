@@ -1,0 +1,35 @@
+<%- include('../includes/head'); %>
+
+<body class="layout">
+    <%- include('../includes/header'); %>
+    <%- include('../includes/aside'); %> 
+
+    <main class="main">
+        <div class="main-group">
+            <div>
+                <p>Vagas Disponíveis: <%= vagasLivres.length %></p>
+                <p>Vagas Ocupadas: <%= vagasOcup.length %> </p>
+            </div>
+            <div>
+                <a href="/vagas/adicionar"><img src="/assets/img/add.png" alt=""> Adicionar Vaga</button></a>
+                <a href="/vagas/remover"><img src="/assets/img/remove.png" alt=""> Remover Vaga</button></a>
+            </div>
+
+        </div> 
+          <div class="vagas-container">
+            <% posts.forEach(vaga => { %>
+                <% if (vaga.situacao) { %>
+                    <div class="box-vagas box-vagas-ocup" >
+                        <%= vaga.id %>
+                    </div>      
+                <% } else {%>
+                    <div class="box-vagas">
+                        <%= vaga.id %>
+                    </div>
+                <% } %> 
+            <% }) %>
+          </div>
+    </main>
+    <%- include('../includes/scripts'); %>
+</body>
+</html>

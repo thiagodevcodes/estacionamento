@@ -1,16 +1,9 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-    </head>
+<%- include('../includes/head')  %> 
   <body>
     <div class="login-container">
         <div>
             <div class="login-info">
-                <img src="/img/logopark.png" alt="">
+                <img src="/assets/img/logopark.png" alt="">
                 <h1>SysPark</h1>
             </div>
 
@@ -20,21 +13,21 @@
                 </header>
                 <form action="/" method="POST">
                     <div class="login-input-box">
-                        <img src="/img/loginuser.png" alt="">
+                        <img src="/assets/img/loginuser.png" alt="">
                         <input placeholder="Login" type="text" name="username" autocomplete="off" required/> 
                     </div>
                     
                     <div class="login-input-box">
-                        <img src="/img/loginpass.png" alt="">
+                        <img src="/assets/img/loginpass.png" alt="">
                         <input placeholder="Senha" type="password" name="password" required/>
                     </div>
                     
                     <div class="login-button">
                         <button type="submit">Entrar</button>
                         <a href="/usuario/atualizar">Esqueceu a senha?</a>
-                        {{#if message}}
-                        <label class="acess-denied">{{message}}</label>
-                        {{/if}}
+                        <% if (message) { %>
+                            <label class="acess-denied"><%= message %></label>
+                        <% } %>
                     </div>
                 </form>
             </div>

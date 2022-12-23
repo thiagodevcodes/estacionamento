@@ -1,0 +1,87 @@
+<%- include('../includes/head'); %>
+
+<body class="layout">
+    <%- include('../includes/header'); %>
+    <%- include('../includes/aside'); %> 
+
+    <div class="modal" id="modalUser">
+        <div class="modal-content">
+            <header class="modal-header">
+                <img src="/assets/img/caduser.png" class="modal-img" alt="">
+                <h2>Novo Usuário</h2>
+            </header>
+            <form action="/users" method="POST" class="modal-form">
+                <input class="modal-field" placeholder="Login" type="text" name="login"required/> 
+                <input class="modal-field" placeholder="Email" type="email" name="email" required/>
+                <input class="modal-field" placeholder="Senha" type="password" name="senha" required/>
+                <input class="modal-field" placeholder="Confirmação de Senha" type="password" name="confirm"required/>
+                <div class="caduser-boxinput">
+                    <label class="modal-label" for="admin">Admin</label>
+                    <input class="modal-checkbox" value="true" name="admin" id="admin" type="checkbox">
+                </div>
+                    
+                <div class="modal-buttons">
+                    <button class="button green" type="submit">Enviar</button>
+                    <button class="button green" id="caduserClose" onclick="ModalUser()" type="button">Fechar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+   <main class="main">
+
+    <div class="main-group">
+        <button onclick="ModalUser()"><img src="/assets/img/add.png" alt=""> Adicionar Novo Usuário</button>
+        <input id="searchbar" placeholder="Buscar..."/>
+    </div>
+
+    
+    <div class="tables-container">
+        <table id="tabela" class="tables-table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Admin</th>
+                    <th>Nome de Usuário</th>
+                    <th >Email</th>
+                    <th colspan="2">Opções</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <% posts.forEach(user => { %>
+                    <tr>
+                        <td><%= user.id %> </td>
+                        <% if (user.admin) { %>
+                            <td>
+                                Sim
+                            </td>
+                        <% } else { %>
+                            <td>
+                                Não
+                            </td>
+                         <% } %> 
+                        <td><%= user.login %> </td>
+                        <td><%= user.email %> </td>
+                        <td class="td-button">
+                            <a href="/users/permissao/<%= user.id %>"><button><img src="/assets/img/admin.png" alt=""></button></a> 
+                        </td>
+
+                        <td class="td-button">
+                            <a href="/users/finalizar/<%= user.id %>"><button><img src="/assets/img/check.png" alt=""></button></a>
+                        </td>
+                    </tr>	
+                <% }) %>
+            </tbody>
+        </table>                
+    </div>
+    </main>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="/assets/js/main.js"></script>  
+    <%- include('../includes/scripts'); %>
+</body>
+</html>
+
+
+
+

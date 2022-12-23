@@ -1,5 +1,13 @@
 .tables-container {
     font-family: 'Poppins', sans-serif;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+}
+
+.section-table {
+    width: 100%;
     display: flex;
     justify-content: center;
 }
@@ -13,6 +21,7 @@
     width: 90%;
     border-radius: 10px;
     background-color: rgb(255, 255, 255);
+    
 }
 
 .tables-table thead {
@@ -23,8 +32,6 @@
     top: -0.1px;
     z-index: 1;
 }
-
-
 
 .tables-table thead th:first-child {
     border-radius: 10px 0px 0 0;
@@ -54,7 +61,8 @@
 }
 
 @media (max-width: 999px) {
-    .tables-table {
-        width: 500px;
+    .tables-container {
+        width: 450px;
+        justify-content: flex-start;
     }
 }

@@ -1,0 +1,12 @@
+<aside class="aside-main">
+    <nav>
+        <ul>
+            <li><img src="/assets/img/mensalista.png" alt=""><a href="/mensalistas">Mensalistas</a></li>
+            <li><img src="/assets/img/rotativos.png" alt=""><a href="/rotativos">Rotativos</a></li>
+            <li><img src="/assets/img/vaga.png" alt=""><a href="/vagas">Vagas</a></li>
+            <% if (user.admin) { %>
+                <li><img src="/assets/img/users.png" alt=""><a href="/users">Usuários</a></li>
+            <% } %>
+        </ul>
+    </nav>
+</aside>

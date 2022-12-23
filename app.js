@@ -12,31 +12,16 @@ const usersRouter = require('./src/routes/users');
 const loginRouter = require('./src/routes/login');
 const mensalistaRouter = require("./src/routes/mensalista");
 const vagasRouter = require("./src/routes/vagas");
+const middlewares = require("./src/middlewares/middleware");
 require("dotenv").config();
-
-
-function authenticationMiddleware(req, res, next) {
-  if (req.isAuthenticated()) return next();
-  res.redirect('/');
-}
-
-function adminMiddleware(req, res, next) {
-  if(req.isAuthenticated() && req.user.admin == 1) return next();
-  res.redirect("/rotativos");
-}
 
 
 const app = express();
 
 // view engine setup
 
-app.engine("handlebars", handlebars.engine({defaultLayout: "main", runtimeOptions: {
-  allowProtoPropertiesByDefault: true,
-  allowProtoMethodsByDefault: true
-}}));
-
 app.set("views", path.join(__dirname, 'src', 'views'))
-app.set("view engine", "handlebars");
+app.set("view engine", "ejs");
 
 app.use( function(req, res, next) {
   if (req.originalUrl && req.originalUrl.split("/").pop() === 'favicon.ico') {
@@ -73,10 +58,10 @@ app.use((req,res,next) => {
 })
 
 app.use('/', loginRouter);
-app.use('/users', authenticationMiddleware, adminMiddleware, usersRouter);
-app.use('/vagas', authenticationMiddleware, vagasRouter);
-app.use("/mensalistas", authenticationMiddleware, mensalistaRouter);
-app.use('/rotativos', authenticationMiddleware, rotativoRouter);
+app.use('/users', middlewares.authenticationMiddleware, middlewares.adminMiddleware, usersRouter);
+app.use('/vagas', middlewares.authenticationMiddleware, vagasRouter);
+app.use("/mensalistas", middlewares.authenticationMiddleware, mensalistaRouter);
+app.use('/rotativos', middlewares.authenticationMiddleware, rotativoRouter);
 
 
 // catch 404 and forward to error handler

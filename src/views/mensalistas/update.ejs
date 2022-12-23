@@ -1,0 +1,75 @@
+<%- include('../includes/head'); %>
+
+<body class="layout">
+    <%- include('../includes/header'); %>
+    <%- include('../includes/aside'); %> 
+
+    <main class="main">
+        <div class="box-update">
+            <form action="/mensalistas/{{mensalista.id}}" method="POST">
+                <header>
+                    <img style="filter: invert(1); width: 30px; margin-right: 5px;" src="/assets/img/mensalista.png" alt="">
+                    <h2>Editar Mensalista</h2>
+                </header>
+
+                <div class="input-container">
+                    <div>
+                        <div>
+                            <label for="nome">Nome: </label>
+                            <input placeholder="Nome" type="text" name="nome" value="<%= cliente.nome %>" required/> 
+                        </div>
+                        <div>
+                            <label for="cpf">CPF: </label>
+                            <input placeholder="CPF" type="text" name="cpf" value="<%= mensalista.cpf %>" required/> 
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="telefone">Telefone: </label>
+                            <input placeholder="Telefone" type="text" name="telefone" value="<%= mensalista.telefone %>" required/>
+                        </div>
+                        <div>
+                            <label for="email">Email: </label>
+                            <input placeholder="Email" type="email" name="email" value="<%= mensalista.email %>" required/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <div>
+                        <div class="datetime">
+                            <label for="diavencimento">Dia Vencimento: </label>
+                            <input placeholder="Dia Vencimento" type="text" name="diavencimento" value="<%= mensalista.diaVencimento %>" required/>
+                        </div>
+
+                        <div class="datetime">
+                            <label for="dataatendimento">Data Admissão: </label>
+                            <input placeholder="Data Admissão" type="date" name="dataatendimento" step="2" value="<%= mensalista.dataAdmissao %>" required/>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="select-vagas-container">
+                    <p>Vaga Disponíveis</p>
+                    <select name="vagas" id="select">
+                        <% vagas.forEach(vaga => { %>
+                            <option value="<%= vaga.id %>"><%= vaga.id %></option>
+                        <% }) %>                  
+                    </select>
+                </div>
+                
+                
+                <div class="modal-buttons">
+                    <button class="button green" type="submit">Enviar</button>
+                    <a class="update-link" href="/mensalistas"><button type="button" class="button green">Voltar</button></a>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="/assets/js/main.js"></script>  
+</body>
+</html>
+
+    
+

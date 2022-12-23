@@ -1,0 +1,90 @@
+<%- include('../includes/head'); %>
+
+<body class="layout">
+    <%- include('../includes/header'); %>
+    <%- include('../includes/aside'); %> 
+
+    <div class="modal" id="modalAluno">
+        <div class="modal-content">
+            <header class="modal-header">
+                <img src="/assets/img/mensal.png" class="modal-img" alt="">
+                <h2 style="font-weight: bold;">Novo Mensalista</h2>
+            </header>
+            <form action="/mensalistas" method="POST" class="modal-form">
+                <input class="modal-field" placeholder="Nome" type="text" name="nome" required/> 
+                <input class="modal-field" placeholder="CPF" type="text" name="cpf" required/> 
+                <input class="modal-field" placeholder="Telefone" type="text" name="telefone"required/>
+                <input class="modal-field" placeholder="Email" type="text" name="email" required/>
+                <input class="modal-field" placeholder="Dia de Vencimento" type="text" name="diavencimento"required/>
+                <div class="select-vagas-container">
+                    <p>Vaga Disponíveis</p>
+                    <select name="vagas" id="select">
+                        <% vagas.forEach(vaga => { %>
+                            <option value="<%= vaga.id %> "> <%= vaga.id %> </option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="modal-buttons">
+                    <button class="button green" type="submit">Enviar</button>
+                    <button class="button green" id="cadClose" onclick="ModalAluno()" type="button">Fechar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  
+    <main class="main">
+
+    <div class="main-group">
+        <button onclick="ModalAluno()"><img src="/assets/img/add.png" alt=""> Adicionar Novo Mensalista</button>
+        <input id="searchbar" placeholder="Buscar..."/>
+    </div>
+    <div class="section-table">
+    <div class="tables-container">
+        <table id="tabela" class="tables-table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>Vencimento</th>
+                    <th>Admissão</th>
+                    <th>Vaga</th>
+                    <th colspan="2">Opções</th>
+                </tr>
+            </thead>
+        
+            <tbody> 
+                <% posts.forEach(mensalista => { %>
+                 <% if (!mensalista.dataRecisao) { %>
+                    <tr>
+                        <td><%= mensalista.id %></td>
+                        <td><%= mensalista.nome %></td>
+                        <td><%= mensalista.cpf %></td>
+                        <td><%=mensalista.telefone%></td>
+                        <td><%= mensalista.diaVencimento %></td>
+                        <td><%= mensalista.dataAdmissao %></td>
+                        <td><%= mensalista.idVaga %></td>
+                        <td class="td-button">
+                            <a href="/mensalistas/<%= mensalista.id %> "><button><img src="/assets/img/pencil.png" alt=""></button></a> 
+                        </td>
+
+                        <td class="td-button">
+                            <a href="/mensalistas/finalizar/<%= mensalista.id %> "><button><img src="/assets/img/check.png" alt=""></button></a>
+                        </td>
+                    </tr>
+                 <% } %>
+                <% }) %>  
+            </tbody>
+        </table>            
+    </div>
+    
+    </main>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="/assets/js/main.js"></script>    
+    <%- include('../includes/scripts'); %>
+</body>
+</html>
+
+
+
