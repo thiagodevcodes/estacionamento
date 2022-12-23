@@ -63,7 +63,7 @@
                         <td><%= mensalista.cpf %></td>
                         <td><%=mensalista.telefone%></td>
                         <td><%= mensalista.diaVencimento %></td>
-                        <td><%= mensalista.dataAdmissao %></td>
+                        <td><%= mensalista.dataAdmissao.split('-').reverse().join('/') %></td>
                         <td><%= mensalista.idVaga %></td>
                         <td class="td-button">
                             <a href="/mensalistas/<%= mensalista.id %> "><button><img src="/assets/img/pencil.png" alt=""></button></a> 
