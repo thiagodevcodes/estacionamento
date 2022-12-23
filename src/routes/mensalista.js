@@ -31,7 +31,8 @@ router.get("/", async(req, res) => {
   const vagas = await VagasController.readVagas(false);
   res.render("mensalistas/index", {
     posts: mensalista[0],
-    vagas: vagas
+    vagas: vagas,
+    title: 'Mensalistas'
   })
 })
 

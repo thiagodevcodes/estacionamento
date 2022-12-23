@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const passport = require('passport');
 const session = require('express-session');
-const handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
 const rotativoRouter = require('./src/routes/rotativo');
 const usersRouter = require('./src/routes/users');
@@ -14,7 +13,6 @@ const mensalistaRouter = require("./src/routes/mensalista");
 const vagasRouter = require("./src/routes/vagas");
 const middlewares = require("./src/middlewares/middleware");
 require("dotenv").config();
-
 
 const app = express();
 

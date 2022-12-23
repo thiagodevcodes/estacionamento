@@ -78,7 +78,8 @@ module.exports = {
         })
         .then( (posts) => {
           res.render("usuarios/index", {
-            posts: posts
+            posts: posts,
+            title: 'Usuários'
           }) 
         }).catch( () => {
             res.send("Not Found");

@@ -21,7 +21,8 @@ router.get("/", async(req, res) => {
   res.render("vagas/index", {
     posts: vagas,
     vagasLivres: vagasLivres,
-    vagasOcup: vagasOcup
+    vagasOcup: vagasOcup,
+    title: 'Vagas'
   })
 })
 

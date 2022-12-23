@@ -40,7 +40,8 @@ router.get("/", async(req, res) => {
 
   res.render("rotativos/index", {
     posts: rotativo[0],
-    vagas: vagas
+    vagas: vagas,
+    title: 'Rotativos'
   })
 })
 

@@ -6,7 +6,7 @@ router.get('/', (req, res, next) => {
     if (req.query.fail)
     res.render('login/index', { message: 'Usuário e/ou senha incorretos!' });
     else
-    res.render('login/index', { message: null });
+    res.render('login/index', { message: null, title: 'Login' });
 });
 
 router.post('/',

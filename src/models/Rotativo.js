@@ -1,7 +1,6 @@
 const db = require("./db");
 const Cliente = require("./Cliente");
 const Veiculo = require("./Veiculo");
-const Vagas = require("./Vagas");
 
 const Rotativo = db.sequelize.define("rotativos", {
     dataAtendimento: {
